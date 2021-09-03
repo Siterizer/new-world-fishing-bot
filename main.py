@@ -1,56 +1,9 @@
 from tkinter import *
+import initializer
 
 root = Tk()
 
-firstColumnText = Label(root, text = "Fishing")
-firstColumnText.grid(row=0, column=0, pady=(3, 0))
-firstColumn = LabelFrame(root)
-firstColumn.grid(row=1, column=0, padx=(10, 0), pady=(0, 5))
-
-firstColumnFirstRowHeaderText = Label(firstColumn, text = "Rectangle position (px)")
-firstColumnFirstRowHeaderText.grid(row=0, column=0)
-firstColumnFirstRow = LabelFrame(firstColumn)
-firstColumnFirstRow.grid(row=1, column=0, padx=(10))
-firstColumnFirstRowX = Label(firstColumnFirstRow, height=1, width=1000)
-firstColumnFirstRowX.grid(row=0, column=0, padx=(5))
-firstColumnFirstRowXText = Label(firstColumnFirstRowX, text="X:", anchor="s")
-firstColumnFirstRowXText.grid(row=0, column=0, pady=(20, 0))
-firstColumnFirstRowXScale = Scale(firstColumnFirstRowX, from_=0, to=3440, orient=HORIZONTAL)
-firstColumnFirstRowXScale.grid(row=0, column=1)
-firstColumnFirstRowXEntry = Text(firstColumnFirstRowX, width=4, height=1)
-firstColumnFirstRowXEntry.grid(row=0, column=2, pady=(20, 0))
-firstColumnFirstRowY = Label(firstColumnFirstRow, height=1, width=1000)
-firstColumnFirstRowY.grid(row=1, column=0)
-firstColumnFirstRowYText = Label(firstColumnFirstRowY, text="Y:", anchor="s")
-firstColumnFirstRowYText.grid(row=0, column=0, pady=(20, 0))
-firstColumnFirstRowYScale = Scale(firstColumnFirstRowY, from_=0, to=3440, orient=HORIZONTAL)
-firstColumnFirstRowYScale.grid(row=0, column=1)
-firstColumnFirstRowYEntry = Text(firstColumnFirstRowY, width=4, height=1)
-firstColumnFirstRowYEntry.grid(row=0, column=2, pady=(20, 0))
-
-firstColumnSecondRowHeaderText = Label(firstColumn, text = "Rectangle attributes (px)")
-firstColumnSecondRowHeaderText.grid(row=2, column=0)
-firstColumnSecondRow = LabelFrame(firstColumn)
-firstColumnSecondRow.grid(row=3, column=0, padx=(10))
-firstColumnSecondRowX = Label(firstColumnSecondRow, height=1, width=1000)
-firstColumnSecondRowX.grid(row=0, column=0, padx=(5))
-firstColumnSecondRowXText = Label(firstColumnSecondRowX, text="X:", anchor="s")
-firstColumnSecondRowXText.grid(row=0, column=0, pady=(20, 0))
-firstColumnSecondRowXScale = Scale(firstColumnSecondRowX, from_=0, to=3440, orient=HORIZONTAL)
-firstColumnSecondRowXScale.grid(row=0, column=1)
-firstColumnSecondRowXEntry = Text(firstColumnSecondRowX, width=4, height=1)
-firstColumnSecondRowXEntry.grid(row=0, column=2, pady=(20, 0))
-firstColumnSecondRowY = Label(firstColumnSecondRow, height=1, width=1000)
-firstColumnSecondRowY.grid(row=1, column=0)
-firstColumnSecondRowYText = Label(firstColumnSecondRowY, text="Y:", anchor="s")
-firstColumnSecondRowYText.grid(row=0, column=0, pady=(20, 0))
-firstColumnSecondRowYScale = Scale(firstColumnSecondRowY, from_=0, to=3440, orient=HORIZONTAL)
-firstColumnSecondRowYScale.grid(row=0, column=1)
-firstColumnSecondRowYEntry = Text(firstColumnSecondRowY, width=4, height=1)
-firstColumnSecondRowYEntry.grid(row=0, column=2, pady=(20, 0))
-
-firstColumnSecondRowButton = Button(firstColumn, text = "Show rectangle")
-firstColumnSecondRowButton.grid(row=4, column=0, pady=(20, 0))
+initializer.init(root)
 
 
 
