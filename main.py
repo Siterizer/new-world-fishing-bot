@@ -1,9 +1,10 @@
 from tkinter import *
+import initializer
 
 root = Tk()
 
-myLabel = Label(root, text="Hello World!")
+initializer.init(root)
 
-myLabel.pack()
+
 
 root.mainloop()
