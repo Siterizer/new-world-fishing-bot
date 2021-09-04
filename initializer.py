@@ -1,4 +1,5 @@
 from tkinter import *
+from functools import partial
 
 def init(root):
     var = IntVar(value=1)
@@ -54,6 +55,7 @@ def init(root):
     firstColumnThirdRow = LabelFrame(firstColumn)
     firstColumnThirdRow.grid(row=4, column=0, pady=(5, 0))
     firstColumnThirdRowButton = Button(firstColumnThirdRow, text = "Show rectangle")
+    firstColumnThirdRowButton.configure(command = partial(popup_rectangle_window, firstColumnThirdRowButton, var, var2, var3, var4))
     firstColumnThirdRowButton.grid(row=4, column=0, padx=(50, 51), pady=(2, 4))
 
     secondColumnText = Label(root, text = "Repairing")
@@ -89,9 +91,25 @@ def init(root):
     secondColumnThirdRow = LabelFrame(secondColumn)
     secondColumnThirdRow.grid(row=4, column=0, pady=(3, 0))
     secondColumnSecondRowButton = Button(secondColumnThirdRow, text = "Show repair position")
+    secondColumnSecondRowButton.configure(command = partial(popup_rectangle_window, secondColumnSecondRowButton, var5, var6, IntVar(value=30), IntVar(value=30)))
     secondColumnSecondRowButton.grid(row=0, column=0, padx=(22, 23), pady=(2, 4))
 
     secondRow = LabelFrame(root)
     secondRow.grid(row=3, columnspan=2, padx=(10, 0), pady=(0, 5))
     secondRowButton = Button(secondRow, text = "Start fishing", font=18)
     secondRowButton.grid(row=0, column=0)
+
+def popup_rectangle_window(button, x, y, width, height):
+    window = Toplevel()
+    window.resizable(False, False)
+    window.attributes('-fullscreen', True)
+    window.wm_attributes('-transparentcolor', window['bg'])
+    canvas = Canvas(window, width=10000, height=10000)
+    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), fill="red")
+    canvas.pack()
+    button.configure(command = partial(destroy_window, window, button, x, y, width, height))
+
+
+def destroy_window(window, button, x, y, width, height):
+    window.destroy()
+    button.configure(command = partial(popup_rectangle_window, button, x,y,width,height))
