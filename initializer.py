@@ -1,12 +1,9 @@
 from tkinter import *
+from functools import partial
+from config import *
 
 def init(root):
-    var = IntVar(value=1)
-    var2 = IntVar(value=1)
-    var3 = IntVar(value=1)
-    var4 = IntVar(value=1)
-    var5 = IntVar(value=1)
-    var6 = IntVar(value=1)
+
     firstColumnText = Label(root, text = "Fishing")
     firstColumnText.grid(row=0, column=0, pady=(3, 0))
     firstColumn = LabelFrame(root)
@@ -19,15 +16,15 @@ def init(root):
     firstColumnFirstRowX.grid(row=0, column=0, padx=(20,19))
     firstColumnFirstRowXText = Label(firstColumnFirstRowX, text="X:")
     firstColumnFirstRowXText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnFirstRowXScale = Scale(firstColumnFirstRowX, from_=0, to=5120, orient=HORIZONTAL, variable=var)
+    firstColumnFirstRowXScale = Scale(firstColumnFirstRowX, from_=0, to=var8, orient=HORIZONTAL, variable=var1)
     firstColumnFirstRowXScale.grid(row=0, column=1)
-    firstColumnFirstRowXEntry = Entry(firstColumnFirstRowX, width=4, textvariable=var)
+    firstColumnFirstRowXEntry = Entry(firstColumnFirstRowX, width=4, textvariable=var1)
     firstColumnFirstRowXEntry.grid(row=0, column=2, pady=(20, 0))
     firstColumnFirstRowY = Label(firstColumnFirstRow, height=1)
     firstColumnFirstRowY.grid(row=1, column=0)
     firstColumnFirstRowYText = Label(firstColumnFirstRowY, text="Y:")
     firstColumnFirstRowYText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnFirstRowYScale = Scale(firstColumnFirstRowY, from_=0, to=2160, orient=HORIZONTAL, variable=var2)
+    firstColumnFirstRowYScale = Scale(firstColumnFirstRowY, from_=0, to=var9, orient=HORIZONTAL, variable=var2)
     firstColumnFirstRowYScale.grid(row=0, column=1)
     firstColumnFirstRowYEntry = Entry(firstColumnFirstRowY, width=4, textvariable=var2)
     firstColumnFirstRowYEntry.grid(row=0, column=2, pady=(20, 0))
@@ -39,7 +36,7 @@ def init(root):
     firstColumnSecondRowX.grid(row=0, column=0, padx=(5))
     firstColumnSecondRowXText = Label(firstColumnSecondRowX, text="Width:")
     firstColumnSecondRowXText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnSecondRowXScale = Scale(firstColumnSecondRowX, from_=0, to=5120, orient=HORIZONTAL, variable=var3)
+    firstColumnSecondRowXScale = Scale(firstColumnSecondRowX, from_=0, to=var8, orient=HORIZONTAL, variable=var3)
     firstColumnSecondRowXScale.grid(row=0, column=1)
     firstColumnSecondRowXEntry = Entry(firstColumnSecondRowX, width=4, textvariable=var3)
     firstColumnSecondRowXEntry.grid(row=0, column=2, pady=(20, 0))
@@ -47,13 +44,14 @@ def init(root):
     firstColumnSecondRowY.grid(row=1, column=0, padx=(5))
     firstColumnSecondRowYText = Label(firstColumnSecondRowY, text="Height:")
     firstColumnSecondRowYText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnSecondRowYScale = Scale(firstColumnSecondRowY, from_=0, to=2160, orient=HORIZONTAL, variable=var4)
+    firstColumnSecondRowYScale = Scale(firstColumnSecondRowY, from_=0, to=var9, orient=HORIZONTAL, variable=var4)
     firstColumnSecondRowYScale.grid(row=0, column=1)
     firstColumnSecondRowYEntry = Entry(firstColumnSecondRowY, width=4, textvariable=var4)
     firstColumnSecondRowYEntry.grid(row=0, column=2, pady=(20, 0))
     firstColumnThirdRow = LabelFrame(firstColumn)
     firstColumnThirdRow.grid(row=4, column=0, pady=(5, 0))
     firstColumnThirdRowButton = Button(firstColumnThirdRow, text = "Show rectangle")
+    firstColumnThirdRowButton.configure(command = partial(popup_rectangle_window, firstColumnThirdRowButton, var1, var2, var3, var4))
     firstColumnThirdRowButton.grid(row=4, column=0, padx=(50, 51), pady=(2, 4))
 
     secondColumnText = Label(root, text = "Repairing")
@@ -68,7 +66,7 @@ def init(root):
     secondColumnFirstRowX.grid(row=0, column=0, padx=(5))
     secondColumnFirstRowXText = Label(secondColumnFirstRowX, text="X:", anchor="s")
     secondColumnFirstRowXText.grid(row=0, column=0, pady=(20, 0))
-    secondColumnFirstRowXScale = Scale(secondColumnFirstRowX, from_=0, to=5120, orient=HORIZONTAL, variable=var5)
+    secondColumnFirstRowXScale = Scale(secondColumnFirstRowX, from_=0, to=var8, orient=HORIZONTAL, variable=var5)
     secondColumnFirstRowXScale.grid(row=0, column=1)
     secondColumnFirstRowXEntry = Entry(secondColumnFirstRowX, width=4, textvariable=var5)
     secondColumnFirstRowXEntry.grid(row=0, column=2, pady=(20, 0))
@@ -76,7 +74,7 @@ def init(root):
     secondColumnFirstRowY.grid(row=1, column=0)
     secondColumnFirstRowYText = Label(secondColumnFirstRowY, text="Y:")
     secondColumnFirstRowYText.grid(row=0, column=0, pady=(20, 0))
-    secondColumnFirstRowYScale = Scale(secondColumnFirstRowY, from_=0, to=2160, orient=HORIZONTAL, variable=var6)
+    secondColumnFirstRowYScale = Scale(secondColumnFirstRowY, from_=0, to=var9, orient=HORIZONTAL, variable=var6)
     secondColumnFirstRowYScale.grid(row=0, column=1)
     secondColumnFirstRowYEntry = Entry(secondColumnFirstRowY, width=4, textvariable=var6)
     secondColumnFirstRowYEntry.grid(row=0, column=2, pady=(20, 0))
@@ -89,9 +87,47 @@ def init(root):
     secondColumnThirdRow = LabelFrame(secondColumn)
     secondColumnThirdRow.grid(row=4, column=0, pady=(3, 0))
     secondColumnSecondRowButton = Button(secondColumnThirdRow, text = "Show repair position")
+    secondColumnSecondRowButton.configure(command = partial(popup_rectangle_window, secondColumnSecondRowButton, var5, var6, var7, var7))
     secondColumnSecondRowButton.grid(row=0, column=0, padx=(22, 23), pady=(2, 4))
 
     secondRow = LabelFrame(root)
     secondRow.grid(row=3, columnspan=2, padx=(10, 0), pady=(0, 5))
     secondRowButton = Button(secondRow, text = "Start fishing", font=18)
     secondRowButton.grid(row=0, column=0)
+
+def popup_rectangle_window(button, x, y, width, height):
+    window = Toplevel()
+    window.resizable(False, False)
+    window.attributes('-fullscreen', True)
+    window.wm_attributes('-transparentcolor', window['bg'])
+    canvas = Canvas(window, width=10000, height=10000)
+    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), fill="green")
+    canvas.pack()
+    button.configure(command = partial(destroy_window, window, button, x, y, width, height))
+
+
+def destroy_window(window, button, x, y, width, height):
+    window.destroy()
+    button.configure(command = partial(popup_rectangle_window, button, x,y,width,height))
+
+def on_closing(root):
+    d = {
+        'fishing':{
+            'x': var1.get(),
+            'y': var2.get(),
+            'width': var3.get(),
+            'height': var4.get()
+        },
+        'repairing':{
+            'x': var5.get(),
+            'y': var6.get(),
+            'length': var7.get()
+        },
+         'resolution':{
+             'x': var8,
+             'y': var9
+        }
+    }
+    with open('config.yml', 'w') as yaml_file:
+        yaml.dump(d, yaml_file)
+    root.destroy()
