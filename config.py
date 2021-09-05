@@ -1,12 +1,42 @@
 import yaml
 from tkinter import IntVar, Tk
-config = yaml.safe_load(open("config.yml"))
-var1 = IntVar(value=config['fishing']['x'])
-var2 = IntVar(value=config['fishing']['y'])
-var3 = IntVar(value=config['fishing']['width'])
-var4 = IntVar(value=config['fishing']['height'])
-var5 = IntVar(value=config['repairing']['x'])
-var6 = IntVar(value=config['repairing']['y'])
-var7 = IntVar(value=config['repairing']['length'])
-var8 = config['resolution']['x']
-var9 = config['resolution']['y']
+config = yaml.safe_load(open("resources/config.yml"))
+
+dict = {
+    'fishing':{
+        'x': IntVar(value=config['fishing']['x']),
+        'y': IntVar(value=config['fishing']['y']),
+        'width': IntVar(value=config['fishing']['width']),
+        'height': IntVar(value=config['fishing']['height'])
+    },
+    'repairing':{
+        'x': IntVar(value=config['repairing']['x']),
+        'y': IntVar(value=config['repairing']['y']),
+        'length': IntVar(value=config['repairing']['length'])
+    },
+     'resolution':{
+         'x': config['resolution']['x'],
+         'y': config['resolution']['y']
+    }
+}
+
+def save_data():
+    d = {
+            'fishing':{
+                'x': dict['fishing']['x'].get(),
+                'y': dict['fishing']['y'].get(),
+                'width': dict['fishing']['width'].get(),
+                'height': dict['fishing']['height'].get()
+            },
+            'repairing':{
+                'x': dict['repairing']['x'].get(),
+                'y': dict['repairing']['y'].get(),
+                'length': dict['repairing']['length'].get()
+            },
+             'resolution':{
+                 'x': dict['resolution']['x'],
+                 'y': dict['resolution']['y']
+            }
+        }
+    with open('resources/config.yml', 'w') as yaml_file:
+        yaml.dump(d, yaml_file)
