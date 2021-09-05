@@ -1,6 +1,7 @@
 from tkinter import *
 from functools import partial
-from config import *
+from config import dict, save_data
+from fishing_functionality import start_fishing
 
 def init(root):
 
@@ -16,17 +17,17 @@ def init(root):
     firstColumnFirstRowX.grid(row=0, column=0, padx=(20,19))
     firstColumnFirstRowXText = Label(firstColumnFirstRowX, text="X:")
     firstColumnFirstRowXText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnFirstRowXScale = Scale(firstColumnFirstRowX, from_=0, to=var8, orient=HORIZONTAL, variable=var1)
+    firstColumnFirstRowXScale = Scale(firstColumnFirstRowX, from_=0, to=dict['resolution']['x'], orient=HORIZONTAL, variable=dict['fishing']['x'])
     firstColumnFirstRowXScale.grid(row=0, column=1)
-    firstColumnFirstRowXEntry = Entry(firstColumnFirstRowX, width=4, textvariable=var1)
+    firstColumnFirstRowXEntry = Entry(firstColumnFirstRowX, width=4, textvariable=dict['fishing']['x'])
     firstColumnFirstRowXEntry.grid(row=0, column=2, pady=(20, 0))
     firstColumnFirstRowY = Label(firstColumnFirstRow, height=1)
     firstColumnFirstRowY.grid(row=1, column=0)
     firstColumnFirstRowYText = Label(firstColumnFirstRowY, text="Y:")
     firstColumnFirstRowYText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnFirstRowYScale = Scale(firstColumnFirstRowY, from_=0, to=var9, orient=HORIZONTAL, variable=var2)
+    firstColumnFirstRowYScale = Scale(firstColumnFirstRowY, from_=0, to=dict['resolution']['y'], orient=HORIZONTAL, variable=dict['fishing']['y'])
     firstColumnFirstRowYScale.grid(row=0, column=1)
-    firstColumnFirstRowYEntry = Entry(firstColumnFirstRowY, width=4, textvariable=var2)
+    firstColumnFirstRowYEntry = Entry(firstColumnFirstRowY, width=4, textvariable=dict['fishing']['y'])
     firstColumnFirstRowYEntry.grid(row=0, column=2, pady=(20, 0))
     firstColumnSecondRowHeaderText = Label(firstColumn, text = "Rectangle attributes (px)")
     firstColumnSecondRowHeaderText.grid(row=2, column=0)
@@ -36,22 +37,22 @@ def init(root):
     firstColumnSecondRowX.grid(row=0, column=0, padx=(5))
     firstColumnSecondRowXText = Label(firstColumnSecondRowX, text="Width:")
     firstColumnSecondRowXText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnSecondRowXScale = Scale(firstColumnSecondRowX, from_=0, to=var8, orient=HORIZONTAL, variable=var3)
+    firstColumnSecondRowXScale = Scale(firstColumnSecondRowX, from_=0, to=dict['resolution']['x'], orient=HORIZONTAL, variable=dict['fishing']['width'])
     firstColumnSecondRowXScale.grid(row=0, column=1)
-    firstColumnSecondRowXEntry = Entry(firstColumnSecondRowX, width=4, textvariable=var3)
+    firstColumnSecondRowXEntry = Entry(firstColumnSecondRowX, width=4, textvariable=dict['fishing']['width'])
     firstColumnSecondRowXEntry.grid(row=0, column=2, pady=(20, 0))
     firstColumnSecondRowY = Label(firstColumnSecondRow, height=1)
     firstColumnSecondRowY.grid(row=1, column=0, padx=(5))
     firstColumnSecondRowYText = Label(firstColumnSecondRowY, text="Height:")
     firstColumnSecondRowYText.grid(row=0, column=0, pady=(20, 0))
-    firstColumnSecondRowYScale = Scale(firstColumnSecondRowY, from_=0, to=var9, orient=HORIZONTAL, variable=var4)
+    firstColumnSecondRowYScale = Scale(firstColumnSecondRowY, from_=0, to=dict['resolution']['y'], orient=HORIZONTAL, variable=dict['fishing']['height'])
     firstColumnSecondRowYScale.grid(row=0, column=1)
-    firstColumnSecondRowYEntry = Entry(firstColumnSecondRowY, width=4, textvariable=var4)
+    firstColumnSecondRowYEntry = Entry(firstColumnSecondRowY, width=4, textvariable=dict['fishing']['height'])
     firstColumnSecondRowYEntry.grid(row=0, column=2, pady=(20, 0))
     firstColumnThirdRow = LabelFrame(firstColumn)
     firstColumnThirdRow.grid(row=4, column=0, pady=(5, 0))
     firstColumnThirdRowButton = Button(firstColumnThirdRow, text = "Show rectangle")
-    firstColumnThirdRowButton.configure(command = partial(popup_rectangle_window, firstColumnThirdRowButton, var1, var2, var3, var4))
+    firstColumnThirdRowButton.configure(command = partial(popup_rectangle_window, firstColumnThirdRowButton, dict['fishing']['x'], dict['fishing']['y'], dict['fishing']['width'], dict['fishing']['height']))
     firstColumnThirdRowButton.grid(row=4, column=0, padx=(50, 51), pady=(2, 4))
 
     secondColumnText = Label(root, text = "Repairing")
@@ -66,17 +67,17 @@ def init(root):
     secondColumnFirstRowX.grid(row=0, column=0, padx=(5))
     secondColumnFirstRowXText = Label(secondColumnFirstRowX, text="X:", anchor="s")
     secondColumnFirstRowXText.grid(row=0, column=0, pady=(20, 0))
-    secondColumnFirstRowXScale = Scale(secondColumnFirstRowX, from_=0, to=var8, orient=HORIZONTAL, variable=var5)
+    secondColumnFirstRowXScale = Scale(secondColumnFirstRowX, from_=0, to=dict['resolution']['x'], orient=HORIZONTAL, variable=dict['repairing']['x'])
     secondColumnFirstRowXScale.grid(row=0, column=1)
-    secondColumnFirstRowXEntry = Entry(secondColumnFirstRowX, width=4, textvariable=var5)
+    secondColumnFirstRowXEntry = Entry(secondColumnFirstRowX, width=4, textvariable=dict['repairing']['x'])
     secondColumnFirstRowXEntry.grid(row=0, column=2, pady=(20, 0))
     secondColumnFirstRowY = Label(secondColumnFirstRow, height=1)
     secondColumnFirstRowY.grid(row=1, column=0)
     secondColumnFirstRowYText = Label(secondColumnFirstRowY, text="Y:")
     secondColumnFirstRowYText.grid(row=0, column=0, pady=(20, 0))
-    secondColumnFirstRowYScale = Scale(secondColumnFirstRowY, from_=0, to=var9, orient=HORIZONTAL, variable=var6)
+    secondColumnFirstRowYScale = Scale(secondColumnFirstRowY, from_=0, to=dict['resolution']['y'], orient=HORIZONTAL, variable=dict['repairing']['y'])
     secondColumnFirstRowYScale.grid(row=0, column=1)
-    secondColumnFirstRowYEntry = Entry(secondColumnFirstRowY, width=4, textvariable=var6)
+    secondColumnFirstRowYEntry = Entry(secondColumnFirstRowY, width=4, textvariable=dict['repairing']['y'])
     secondColumnFirstRowYEntry.grid(row=0, column=2, pady=(20, 0))
     secondColumnSecondRow = LabelFrame(secondColumn)
     secondColumnSecondRow.grid(row=3, column=0)
@@ -87,12 +88,13 @@ def init(root):
     secondColumnThirdRow = LabelFrame(secondColumn)
     secondColumnThirdRow.grid(row=4, column=0, pady=(3, 0))
     secondColumnSecondRowButton = Button(secondColumnThirdRow, text = "Show repair position")
-    secondColumnSecondRowButton.configure(command = partial(popup_rectangle_window, secondColumnSecondRowButton, var5, var6, var7, var7))
+    secondColumnSecondRowButton.configure(command = partial(popup_rectangle_window, secondColumnSecondRowButton, dict['repairing']['x'], dict['repairing']['y'], dict['repairing']['length'], dict['repairing']['length']))
     secondColumnSecondRowButton.grid(row=0, column=0, padx=(22, 23), pady=(2, 4))
 
     secondRow = LabelFrame(root)
     secondRow.grid(row=3, columnspan=2, padx=(10, 0), pady=(0, 5))
     secondRowButton = Button(secondRow, text = "Start fishing", font=18)
+    secondRowButton.configure(command = partial(start_fishing, secondRowButton))
     secondRowButton.grid(row=0, column=0)
 
 def popup_rectangle_window(button, x, y, width, height):
@@ -111,23 +113,5 @@ def destroy_window(window, button, x, y, width, height):
     button.configure(command = partial(popup_rectangle_window, button, x,y,width,height))
 
 def on_closing(root):
-    d = {
-        'fishing':{
-            'x': var1.get(),
-            'y': var2.get(),
-            'width': var3.get(),
-            'height': var4.get()
-        },
-        'repairing':{
-            'x': var5.get(),
-            'y': var6.get(),
-            'length': var7.get()
-        },
-         'resolution':{
-             'x': var8,
-             'y': var9
-        }
-    }
-    with open('config.yml', 'w') as yaml_file:
-        yaml.dump(d, yaml_file)
+    save_data()
     root.destroy()
