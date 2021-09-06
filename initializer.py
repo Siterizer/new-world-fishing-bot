@@ -94,7 +94,7 @@ def init(root):
     secondRow = LabelFrame(root)
     secondRow.grid(row=3, columnspan=2, padx=(10, 0), pady=(0, 5))
     secondRowButton = Button(secondRow, text = "Start fishing", font=18)
-    secondRowButton.configure(command = partial(start_fishing, secondRowButton))
+    secondRowButton.configure(command = partial(start_fishing, root, secondRowButton))
     secondRowButton.grid(row=0, column=0)
 
 def popup_rectangle_window(button, x, y, width, height):
