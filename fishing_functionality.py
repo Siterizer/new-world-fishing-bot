@@ -47,7 +47,6 @@ def repairing():
 
 def fishing():
     cropped_screenshot = get_screenshot(dict['fishing']['x'].get(), dict['fishing']['y'].get(), dict['fishing']['width'].get(), dict['fishing']['height'].get())
-    save_screenshot(cropped_screenshot)#UNCOMMENT ONLY WHEN YOU NEED TO COLLECT YOUR SCREENSHOTS
 
     #AI model WIP
     result_from_model = 0#model(cropped_screenshot)
