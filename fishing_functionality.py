@@ -1,52 +1,52 @@
 from config import dict
 from functools import partial
 from tkinter import *
+from pyautogui_wrapper import *
 from datetime import datetime
-import pyautogui
 import time
 
-stop_fishing = True
+continue_fishing = False
 counter = 0
 
 def start_fishing(root, button):
-    global stop_fishing
+    global continue_fishing
     button.configure(text = "Stop fishing")
     button.configure(command = partial(stop_fishing, root, button))
-    stop_fishing = False
+    continue_fishing = True
     main_loop(root)
 
 
 def main_loop(root):
     global counter
-    global stop_fishing
+    global continue_fishing
     counter += 1
+    print(counter)
     if(counter % 10 == 0):
         repairing()
     fishing()
-    if (stop_fishing):
+    if (continue_fishing):
         root.after(100, main_loop, root)
 
 
 def stop_fishing(root, button):
-    global stop_fishing
-    stop_fishing = False
+    global continue_fishing
+    continue_fishing = False
     button.configure(text = "Start fishing")
     button.configure(command = partial(start_fishing, root, button))
 
 def repairing():
-    pyautogui.keyDown('tab') #Open equipment
-    pyautogui.keyUp('tab') #release key
+    press_key('tab') #Open equipment
+    release_key('tab') #release key
     time.sleep(2) #Wait equipment loads
-    pyautogui.keyDown('r') #Press repair hotkey
-    pyautogui.click(x=dict['repairing']['x'].get(), y=dict['repairing']['y'].get()) #Repair rod
+    press_key('r') #Press repair hotkey
+    click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
     time.sleep(2) #Wait 2s until the rod is finished repairing
-    pyautogui.keyUp('r') #release key
-    pyautogui.keyDown('escape') #escape equipment
-    pyautogui.keyUp('escape') #release key
+    release_key('r') #release key
+    press_key('escape') #escape equipment
+    release_key('escape') #release key
 
 def fishing():
-    cropped_screenshot = pyautogui.screenshot(region=(dict['fishing']['x'].get(), dict['fishing']['y'].get(),
-    dict['fishing']['width'].get(), dict['fishing']['height'].get()))
+    cropped_screenshot = get_screen_shot(dict['fishing']['x'].get(), dict['fishing']['y'].get(), dict['fishing']['width'].get(), dict['fishing']['height'].get())
     #save_screenshot(cropped_screenshot)#UNCOMMENT ONLY WHEN YOU NEED TO COLLECT YOUR SCREENSHOTS
 
     #AI model WIP
@@ -54,6 +54,7 @@ def fishing():
     #AI model WIP
 
     if result_from_model == 0: # 0 - model does not match any data (not fish captured yet)
+        print("siema")
         return
     elif result_from_model == 1: # 1 - model noticed a fish(left click to start game)
         initiate_fishing()
@@ -66,12 +67,13 @@ def fishing():
         return
 
 def initiate_fishing():
-    pyautogui.click(x=(dict['fishing']['x'].get() + dict['fishing']['width'].get()//2), y=(dict['fishing']['y'].get() + dict['fishing']['height'].get()//2))
+    click_mouse_with_coordinates(dict['fishing']['x'].get() + dict['fishing']['width'].get()//2,
+                                dict['fishing']['y'].get() + dict['fishing']['height'].get()//2)
 
 def reel_fish():
-    pyautogui.mouseDown()
+    press_mouse_key()
     time.sleep(2)
-    pyautogui.mouseUp()
+    release_mouse_key()
 
 
 def save_screenshot(screenshot):
