@@ -1,7 +1,7 @@
 fishing:
-  height: 222
-  width: 452
-  x: 1280
+  height: 1440
+  width: 3440
+  x: 0
   y: 0
 repairing:
   length: 25
