@@ -46,15 +46,14 @@ def repairing():
     release_key('escape') #release key
 
 def fishing():
-    cropped_screenshot = get_screen_shot(dict['fishing']['x'].get(), dict['fishing']['y'].get(), dict['fishing']['width'].get(), dict['fishing']['height'].get())
-    #save_screenshot(cropped_screenshot)#UNCOMMENT ONLY WHEN YOU NEED TO COLLECT YOUR SCREENSHOTS
+    cropped_screenshot = get_screenshot(dict['fishing']['x'].get(), dict['fishing']['y'].get(), dict['fishing']['width'].get(), dict['fishing']['height'].get())
+    save_screenshot(cropped_screenshot)#UNCOMMENT ONLY WHEN YOU NEED TO COLLECT YOUR SCREENSHOTS
 
     #AI model WIP
     result_from_model = 0#model(cropped_screenshot)
     #AI model WIP
 
     if result_from_model == 0: # 0 - model does not match any data (not fish captured yet)
-        print("siema")
         return
     elif result_from_model == 1: # 1 - model noticed a fish(left click to start game)
         initiate_fishing()
@@ -78,7 +77,7 @@ def reel_fish():
 
 def save_screenshot(screenshot):
     actual_time = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S_%f')
-    screenshot.save(r"G:\new-world-bot\saved_data\\"+ actual_time + ".png")
+    screenshot.save(r"G:\new-world-bot\saved_data\screenshots\\"+ actual_time + ".png")
 
 
 
