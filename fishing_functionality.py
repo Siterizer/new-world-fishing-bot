@@ -5,35 +5,35 @@ from datetime import datetime
 import pyautogui
 import time
 
-continue_fishing = False
+stop_fishing = True
 counter = 0
 
 def start_fishing(root, button):
-    global continue_fishing
+    global stop_fishing
     button.configure(text = "Stop fishing")
     button.configure(command = partial(stop_fishing, root, button))
-    continue_fishing = True
+    stop_fishing = False
     main_loop(root)
 
 
 def main_loop(root):
     global counter
-    global continue_fishing
+    global stop_fishing
     counter += 1
     if(counter % 10 == 0):
-        repair()
+        repairing()
     fishing()
-    if (continue_fishing):
+    if (stop_fishing):
         root.after(100, main_loop, root)
 
 
 def stop_fishing(root, button):
-    global continue_fishing
-    continue_fishing = False
+    global stop_fishing
+    stop_fishing = False
     button.configure(text = "Start fishing")
     button.configure(command = partial(start_fishing, root, button))
 
-def repair():
+def repairing():
     pyautogui.keyDown('tab') #Open equipment
     pyautogui.keyUp('tab') #release key
     time.sleep(2) #Wait equipment loads
@@ -56,7 +56,7 @@ def fishing():
     if result_from_model == 0: # 0 - model does not match any data (not fish captured yet)
         return
     elif result_from_model == 1: # 1 - model noticed a fish(left click to start game)
-        start_game()
+        initiate_fishing()
         return
     elif result_from_model == 2: #2 - model matched the green icon (reeling a fish in)
         reel_fish()
@@ -65,7 +65,7 @@ def fishing():
         time.sleep(2)
         return
 
-def start_game():
+def initiate_fishing():
     pyautogui.click(x=(dict['fishing']['x'].get() + dict['fishing']['width'].get()//2), y=(dict['fishing']['y'].get() + dict['fishing']['height'].get()//2))
 
 def reel_fish():
