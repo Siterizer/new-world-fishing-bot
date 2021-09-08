@@ -1,6 +1,6 @@
 from tkinter import *
 from functools import partial
-from config import dict, save_data
+from resources.config import dict, save_data
 from fishing_functionality import start_fishing
 
 def init(root):
