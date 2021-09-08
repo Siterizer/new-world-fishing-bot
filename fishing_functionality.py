@@ -1,7 +1,7 @@
-from config import dict
+from resources.config import dict, save_data
 from functools import partial
 from tkinter import *
-from pyautogui_wrapper import *
+from wrappers.pyautogui_wrapper import *
 from datetime import datetime
 import time
 
@@ -47,7 +47,7 @@ def repairing():
     release_key('escape')
 
 def fishing():
-    result_from_model = screen_recognize(dict['fishing']['x'].get(), dict['fishing']['y'].get(), dict['fishing']['width'].get(), dict['fishing']['height'].get())
+    result_from_model = '0'#screen_recognize(dict['fishing']['x'].get(), dict['fishing']['y'].get(), dict['fishing']['width'].get(), dict['fishing']['height'].get())
 
     print(result_from_model)
     if result_from_model == '0': # 0 - model does not match any data (not fish captured yet)
