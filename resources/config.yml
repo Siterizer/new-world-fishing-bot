@@ -1,0 +1,12 @@
+fishing:
+  height: 1440
+  width: 3440
+  x: 0
+  y: 0
+repairing:
+  length: 25
+  x: 1958
+  y: 540
+resolution:
+  x: 5120
+  y: 2160
