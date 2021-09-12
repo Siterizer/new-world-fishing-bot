@@ -1,6 +1,10 @@
 import yaml
-from tkinter import IntVar, Tk
-config = yaml.safe_load(open("resources/config.yml"))
+import time
+from tkinter import IntVar, StringVar, Tk
+from global_variables import CONFIG_PATH
+
+
+config = yaml.safe_load(open(CONFIG_PATH))
 
 dict = {
     'fishing':{
@@ -12,7 +16,10 @@ dict = {
     'repairing':{
         'x': IntVar(value=config['repairing']['x']),
         'y': IntVar(value=config['repairing']['y']),
-        'length': IntVar(value=config['repairing']['length'])
+        'length': IntVar(value=config['repairing']['length']),
+        'every': IntVar(value=config['repairing']['every']),
+        'time' : int(time.time()),
+        'enable': IntVar(value=config['repairing']['enable'])
     },
      'resolution':{
          'x': config['resolution']['x'],
@@ -31,12 +38,14 @@ def save_data():
             'repairing':{
                 'x': dict['repairing']['x'].get(),
                 'y': dict['repairing']['y'].get(),
-                'length': dict['repairing']['length'].get()
+                'length': dict['repairing']['length'].get(),
+                'every': dict['repairing']['every'].get(),
+                'enable': dict['repairing']['enable'].get()
             },
              'resolution':{
                  'x': dict['resolution']['x'],
                  'y': dict['resolution']['y']
             }
         }
-    with open('resources/config.yml', 'w') as yaml_file:
+    with open(CONFIG_PATH, 'w') as yaml_file:
         yaml.dump(d, yaml_file)

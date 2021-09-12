@@ -1,6 +1,6 @@
 from tkinter import *
 from functools import partial
-from config import dict, save_data
+from resources.config import dict, save_data
 from fishing_functionality import start_fishing
 
 def init(root):
@@ -58,7 +58,7 @@ def init(root):
     secondColumnText = Label(root, text = "Repairing")
     secondColumnText.grid(row=0, column=1, pady=(3, 0))
     secondColumn = LabelFrame(root)
-    secondColumn.grid(row=1, column=1, padx=(10, 0), pady=(0, 93))
+    secondColumn.grid(row=1, column=1, padx=(10, 10), pady=(0, 53))
     secondColumnFirstRowHeaderText = Label(secondColumn, text = "Click position (px)")
     secondColumnFirstRowHeaderText.grid(row=0, column=0)
     secondColumnFirstRow = LabelFrame(secondColumn)
@@ -80,19 +80,30 @@ def init(root):
     secondColumnFirstRowYEntry = Entry(secondColumnFirstRowY, width=4, textvariable=dict['repairing']['y'])
     secondColumnFirstRowYEntry.grid(row=0, column=2, pady=(20, 0))
     secondColumnSecondRow = LabelFrame(secondColumn)
-    secondColumnSecondRow.grid(row=3, column=0)
-    secondColumnSecondRowCheckText = Label(secondColumnSecondRow, text="Enable repairs:")
-    secondColumnSecondRowCheckText.grid(row=0, column=0, padx=(0, 37))
-    secondColumnSecondRowCheckButton = Checkbutton(secondColumnSecondRow)
-    secondColumnSecondRowCheckButton.grid(row=0, column=1, padx=(0, 17))
+    secondColumnSecondRow.grid(row=3, column=0, pady=(5, 5))
+    secondColumnSecondRowText = Label(secondColumnSecondRow, text = "Repair every:")
+    secondColumnSecondRowText.grid(row=0, column=0, padx=(0, 5))
+    secondColumnSecondRowEntry = Entry(secondColumnSecondRow, width=4, textvariable=dict['repairing']['every'])
+    secondColumnSecondRowEntry.grid(row=0, column=1, padx=(41, 0))
+    secondColumnSecondRowTextTwo = Label(secondColumnSecondRow, text = "s")
+    secondColumnSecondRowTextTwo.grid(row=0, column=3, padx=(0, 6))
     secondColumnThirdRow = LabelFrame(secondColumn)
-    secondColumnThirdRow.grid(row=4, column=0, pady=(3, 0))
-    secondColumnSecondRowButton = Button(secondColumnThirdRow, text = "Show repair position")
-    secondColumnSecondRowButton.configure(command = partial(popup_rectangle_window, secondColumnSecondRowButton, dict['repairing']['x'], dict['repairing']['y'], dict['repairing']['length'], dict['repairing']['length']))
-    secondColumnSecondRowButton.grid(row=0, column=0, padx=(22, 23), pady=(2, 4))
+    secondColumnThirdRow.grid(row=4, column=0, pady=(0, 5))
+    secondColumnThirdRowCheckText = Label(secondColumnThirdRow, text="Enable repairs:")
+    secondColumnThirdRowCheckText.grid(row=0, column=0, padx=(0, 37))
+    secondColumnThirdRowCheckButton = Button(secondColumnThirdRow)
+    changeButtonState(secondColumnThirdRowCheckButton)
+    changeButtonState(secondColumnThirdRowCheckButton)
+    secondColumnThirdRowCheckButton.configure(command = partial(changeButtonState, secondColumnThirdRowCheckButton))
+    secondColumnThirdRowCheckButton.grid(row=0, column=1, padx=(0, 13))
+    secondColumnFourthRow = LabelFrame(secondColumn)
+    secondColumnFourthRow.grid(row=5, column=0, pady=(3, 0))
+    secondColumnFourthRowButton = Button(secondColumnFourthRow, text = "Show repair position")
+    secondColumnFourthRowButton.configure(command = partial(popup_rectangle_window, secondColumnFourthRowButton, dict['repairing']['x'], dict['repairing']['y'], dict['repairing']['length'], dict['repairing']['length']))
+    secondColumnFourthRowButton.grid(row=0, column=0, padx=(32, 13), pady=(2, 4))
 
     secondRow = LabelFrame(root)
-    secondRow.grid(row=3, columnspan=2, padx=(10, 0), pady=(0, 5))
+    secondRow.grid(row=3, columnspan=2, padx=(10, 0), pady=(15, 0))
     secondRowButton = Button(secondRow, text = "Start fishing", font=18)
     secondRowButton.configure(command = partial(start_fishing, root, secondRowButton))
     secondRowButton.grid(row=0, column=0)
@@ -107,7 +118,6 @@ def popup_rectangle_window(button, x, y, width, height):
     canvas.pack()
     button.configure(command = partial(destroy_window, window, button, x, y, width, height))
 
-
 def destroy_window(window, button, x, y, width, height):
     window.destroy()
     button.configure(command = partial(popup_rectangle_window, button, x,y,width,height))
@@ -115,3 +125,15 @@ def destroy_window(window, button, x, y, width, height):
 def on_closing(root):
     save_data()
     root.destroy()
+
+def changeButtonState(button):
+    if (dict['repairing']['enable'].get() == 1):
+        button.configure(text="OFF")
+        button.configure(bg="red")
+        dict['repairing']['enable'] = IntVar(value=0)
+    else:
+        button.configure(text="ON ")
+        button.configure(bg="green")
+        dict['repairing']['enable'] = IntVar(value=1)
+
+
