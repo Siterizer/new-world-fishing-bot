@@ -1,6 +1,4 @@
 .idea/
 __pycache__/
-saved_data/logs/*
-!saved_data/logs/.gitkeep
 saved_data/screenshots/*
 !saved_data/screenshots/.gitkeep
