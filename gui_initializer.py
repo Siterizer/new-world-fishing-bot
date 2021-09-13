@@ -1,8 +1,8 @@
 from tkinter import *
 from functools import partial
-from resources.config import dict, save_data
+from utils.config import dict, save_data
 from functionality.start_fishing import start_fishing
-from global_variables import get_root
+from utils.global_variables import get_root
 
 def gui_init():
     get_root().resizable(False, False)

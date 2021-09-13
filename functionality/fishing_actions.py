@@ -1,5 +1,5 @@
-from global_variables import *
-from resources.config import dict
+from utils.global_variables import *
+from utils.config import dict
 from wrappers.model_wrapper import get_model_result
 from wrappers.pyautogui_wrapper import *
 

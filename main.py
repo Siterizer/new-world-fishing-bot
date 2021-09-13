@@ -1,6 +1,4 @@
-from tkinter import *
-from functools import partial
-from global_variables import init_variables, get_root
+from utils.global_variables import init_variables, get_root
 
 init_variables()
 

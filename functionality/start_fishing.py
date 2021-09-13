@@ -1,5 +1,5 @@
 from functionality.fishing_actions import fishing_loop
-from global_variables import *
+from utils.global_variables import *
 from functools import partial
 
 
