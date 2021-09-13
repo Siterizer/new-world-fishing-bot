@@ -1,7 +1,7 @@
 import yaml
 import time
 from tkinter import IntVar, StringVar, Tk
-from global_variables import CONFIG_PATH
+from utils.global_variables import CONFIG_PATH
 
 
 config = yaml.safe_load(open(CONFIG_PATH))

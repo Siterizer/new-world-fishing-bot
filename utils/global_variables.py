@@ -4,7 +4,7 @@ import time
 from tkinter import Tk
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(ROOT_DIR, 'resources\config.yml')
+CONFIG_PATH = os.path.join(ROOT_DIR, 'config.yml')
 MODEL_PATH = os.path.join(ROOT_DIR, 'model\\')
 
 
