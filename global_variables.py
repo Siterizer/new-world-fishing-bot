@@ -1,6 +1,7 @@
 from functionality.LastResults import *
 import os
 import time
+from tkinter import Tk
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(ROOT_DIR, 'resources\config.yml')
@@ -8,6 +9,9 @@ MODEL_PATH = os.path.join(ROOT_DIR, 'model\\')
 
 
 def init_variables():
+    global root
+    root = Tk()
+
     global continue_fishing
     continue_fishing = False
 
@@ -16,6 +20,10 @@ def init_variables():
     
     global last_repair_time
     last_repair_time = int(time.time())
+
+def get_root():
+    global root
+    return root
 
 def fishing_state():
     global continue_fishing

@@ -18,7 +18,6 @@ dict = {
         'y': IntVar(value=config['repairing']['y']),
         'length': IntVar(value=config['repairing']['length']),
         'every': IntVar(value=config['repairing']['every']),
-        'time' : int(time.time()),
         'enable': IntVar(value=config['repairing']['enable'])
     },
      'resolution':{
