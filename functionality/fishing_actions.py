@@ -5,7 +5,7 @@ from wrappers.pyautogui_wrapper import *
 
 
 
-def fishing_loop(root):
+def fishing_loop():
     results().add(fishing())
     if(results().is_full_of('0')):
         if(dict['repairing']['enable'].get() == 1):
@@ -13,7 +13,7 @@ def fishing_loop(root):
                 update_last_repair_time()
                 repairing()
     if (fishing_state()):
-        root.after(10, fishing_loop, root)
+        get_root().after(10, fishing_loop)
 
 
 def repairing():
