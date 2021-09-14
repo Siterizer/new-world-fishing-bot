@@ -1,13 +1,13 @@
 from PIL import Image
+from utils.global_variables import SCREENSHOTS_PATH
 import pyautogui
 import time
-import random
 import datetime
 
 
-def click_mouse_with_coordinates(x1, y1, delay):
+def click_mouse_with_coordinates(x1, y1):
     pyautogui.moveTo(x1, y1)
-    time.sleep(delay)
+    time.sleep(0.05)
     pyautogui.click()
 
 def press_key(key):
@@ -30,4 +30,4 @@ def get_screenshot(x, y, width, height):
 def save_screenshot(screenshot):
     actual_time = datetime.datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S_%f')
     file_name = actual_time + ".jpg"
-    screenshot.save(r"G:\new-world-bot\saved_data\screenshots\\"+ file_name)
+    screenshot.save(SCREENSHOTS_PATH+ file_name)

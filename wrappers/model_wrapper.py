@@ -2,7 +2,7 @@ import os
 import numpy as np
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' #Disable tensorflow warnings
 from tensorflow import keras
-from global_variables import MODEL_PATH
+from utils.global_variables import MODEL_PATH
 
 class_names = ['0', '1', '2', '3']
 model = keras.models.load_model(MODEL_PATH)
