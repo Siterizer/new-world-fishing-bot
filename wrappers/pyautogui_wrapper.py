@@ -2,13 +2,12 @@ from PIL import Image
 from utils.global_variables import SCREENSHOTS_PATH
 import pyautogui
 import time
-import random
 import datetime
 
 
-def click_mouse_with_coordinates(x1, y1, delay):
+def click_mouse_with_coordinates(x1, y1):
     pyautogui.moveTo(x1, y1)
-    time.sleep(delay)
+    time.sleep(0.05)
     pyautogui.click()
 
 def press_key(key):

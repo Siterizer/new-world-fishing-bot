@@ -1,7 +1,7 @@
 from tkinter import *
 from functools import partial
-from utils.config import dict, save_data
-from functionality.start_fishing import start_fishing
+from utils.config import dict
+from gui.gui_functions import *
 import utils.global_variables as gv
 
 def gui_init():
@@ -109,33 +109,3 @@ def gui_init():
     start_fishing_button = Button(start_fishing_container, text = "Start fishing", font=18)
     start_fishing_button.configure(command = partial(start_fishing, start_fishing_button))
     start_fishing_button.grid(row=0, column=0)
-
-def popup_rectangle_window(button, x, y, width, height):
-    window = Toplevel()
-    window.resizable(False, False)
-    window.attributes('-fullscreen', True)
-    window.wm_attributes('-transparentcolor', window['bg'])
-    canvas = Canvas(window, width=10000, height=10000)
-    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), fill="green")
-    canvas.pack()
-    button.configure(command = partial(destroy_rectangle_window, window, button, x, y, width, height))
-
-def destroy_rectangle_window(window, button, x, y, width, height):
-    window.destroy()
-    button.configure(command = partial(popup_rectangle_window, button, x,y,width,height))
-
-def on_closing():
-    save_data()
-    gv.root.destroy()
-
-def change_repair_button_state(button):
-    if (dict['repairing']['enable'].get() == 1):
-        button.configure(text="OFF")
-        button.configure(bg="red")
-        dict['repairing']['enable'] = IntVar(value=0)
-    else:
-        button.configure(text="ON ")
-        button.configure(bg="green")
-        dict['repairing']['enable'] = IntVar(value=1)
-
-
