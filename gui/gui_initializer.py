@@ -2,15 +2,15 @@ from tkinter import *
 from functools import partial
 from utils.config import dict, save_data
 from functionality.start_fishing import start_fishing
-from utils.global_variables import get_root
+import utils.global_variables as gv
 
 def gui_init():
-    get_root().resizable(False, False)
-    get_root().protocol("WM_DELETE_WINDOW", partial(on_closing))
+    gv.root.resizable(False, False)
+    gv.root.protocol("WM_DELETE_WINDOW", partial(on_closing))
 
-    fishing_column_header = Label(get_root(), text = "Fishing")
+    fishing_column_header = Label(gv.root, text = "Fishing")
     fishing_column_header.grid(row=0, column=0, pady=(3, 0))
-    fishing_column = LabelFrame(get_root())
+    fishing_column = LabelFrame(gv.root)
     fishing_column.grid(row=1, column=0, padx=(10, 0), pady=(0, 5))
     fishing_column_position_header = Label(fishing_column, text = "Rectangle position (px)")
     fishing_column_position_header.grid(row=0, column=0)
@@ -58,9 +58,9 @@ def gui_init():
     fishing_column_show_button.configure(command = partial(popup_rectangle_window, fishing_column_show_button, dict['fishing']['x'], dict['fishing']['y'], dict['fishing']['width'], dict['fishing']['height']))
     fishing_column_show_button.grid(row=4, column=0, padx=(50, 51), pady=(2, 4))
 
-    repairing_column_header = Label(get_root(), text = "Repairing")
+    repairing_column_header = Label(gv.root, text = "Repairing")
     repairing_column_header.grid(row=0, column=1, pady=(3, 0))
-    repairing_column = LabelFrame(get_root())
+    repairing_column = LabelFrame(gv.root)
     repairing_column.grid(row=1, column=1, padx=(10, 10), pady=(0, 53))
     repairing_column_position_header = Label(repairing_column, text = "Click position (px)")
     repairing_column_position_header.grid(row=0, column=0)
@@ -104,7 +104,7 @@ def gui_init():
     repairing_column_show_button = Button(repairing_column_show_container, text = "Show repair position")
     repairing_column_show_button.configure(command = partial(popup_rectangle_window, repairing_column_show_button, dict['repairing']['x'], dict['repairing']['y'], dict['repairing']['length'], dict['repairing']['length']))
     repairing_column_show_button.grid(row=0, column=0, padx=(25, 20), pady=(2, 4))
-    start_fishing_container = LabelFrame(get_root())
+    start_fishing_container = LabelFrame(gv.root)
     start_fishing_container.grid(row=3, columnspan=2, padx=(10, 0), pady=(15, 0))
     start_fishing_button = Button(start_fishing_container, text = "Start fishing", font=18)
     start_fishing_button.configure(command = partial(start_fishing, start_fishing_button))
@@ -126,7 +126,7 @@ def destroy_rectangle_window(window, button, x, y, width, height):
 
 def on_closing():
     save_data()
-    get_root().destroy()
+    gv.root.destroy()
 
 def change_repair_button_state(button):
     if (dict['repairing']['enable'].get() == 1):

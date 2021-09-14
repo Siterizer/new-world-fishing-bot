@@ -1,4 +1,4 @@
-from utils.global_variables import *
+import utils.global_variables as gv
 from utils.config import dict
 from wrappers.model_wrapper import get_model_result
 from wrappers.pyautogui_wrapper import *
@@ -6,14 +6,14 @@ from wrappers.pyautogui_wrapper import *
 
 
 def fishing_loop():
-    results().add(fishing())
-    if(results().is_full_of('0')):
+    gv.last_results.add(fishing())
+    if(gv.last_results.is_full_of('0')):
         if(dict['repairing']['enable'].get() == 1):
-            if(int(time.time()) > get_last_repair_time()+ dict['repairing']['every'].get()):
-                update_last_repair_time()
+            if(int(time.time()) > gv.last_repair_time+ dict['repairing']['every'].get()):
+                gv.last_repair_time = int(time.time())
                 repairing()
-    if (fishing_state()):
-        get_root().after(10, fishing_loop)
+    if (gv.continue_fishing):
+        gv.root.after(10, fishing_loop)
 
 
 def repairing():
@@ -55,8 +55,9 @@ def fishing():
     screenshot = get_screenshot(dict['fishing']['x'].get(), dict['fishing']['y'].get(),
                                 dict['fishing']['width'].get(), dict['fishing']['height'].get())
     #save_screenshot(screenshot) #UNCOMMENT ONLY WHEN YOU NEED TO SAVE YOUR SCREENSHOTS (model training etc.)
+    print(gv.last_results.data)
     result_from_model = get_model_result(screenshot)
-    if(results().get_last_value() != result_from_model and result_from_model != '1' ):
+    if(gv.last_results.get_last_value() != result_from_model and result_from_model != '1' ):
         return result_from_model
     if result_from_model == '0': # 0 - model does not match any data (not fish captured yet)
         print("Waiting for fish...")
