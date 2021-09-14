@@ -8,7 +8,6 @@ def fishing_loop():
     gv.last_results.add(call_appropriate_fishing_action())
     if(gv.last_results.is_full_of('0')):
         if(dict['repairing']['enable'].get() == 1):
-            print('repair in: ', int(time.time()) - gv.last_repair_time - dict['repairing']['every'].get())
             if(int(time.time()) > gv.last_repair_time + dict['repairing']['every'].get()):
                 gv.last_repair_time = int(time.time())
                 repairing()
