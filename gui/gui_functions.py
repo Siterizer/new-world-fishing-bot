@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Toplevel, Canvas, IntVar
 from functools import partial
 from utils.config import dict, save_data
 from functionality.fishing_loop import fishing_loop

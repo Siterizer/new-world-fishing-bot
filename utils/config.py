@@ -1,10 +1,9 @@
-import yaml
-import time
-from tkinter import IntVar, StringVar, Tk
+from yaml import safe_load, dump
+from tkinter import IntVar
 from utils.global_variables import CONFIG_PATH
 
 
-config = yaml.safe_load(open(CONFIG_PATH))
+config = safe_load(open(CONFIG_PATH))
 
 dict = {
     'fishing':{
@@ -47,4 +46,4 @@ def save_data():
             }
         }
     with open(CONFIG_PATH, 'w') as yaml_file:
-        yaml.dump(d, yaml_file)
+        dump(d, yaml_file)
