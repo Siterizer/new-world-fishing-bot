@@ -1,2 +1,17 @@
-# new-world-bot Work in Progress
-![](https://media2.giphy.com/media/Pm4IA0XrTWwE2DaTMI/giphy.gif?cid=790b76117861f2e4b4d40a53d8a814380c9c1580e313935a&rid=giphy.gif)
+# new-world-fishing-bot release 1.0.0 
+(1.1.0 incoming in first 2 days of game release)
+
+# Instalation guide
+* Clone repo ```git clone https://github.com/Siterizer/new-world-fishing-bot.git```
+* Install python https://www.python.org/downloads/
+* Create python virtual enviroment ```python3 -m venv instalation_directory\new-world-fishing-bot```
+* Enter virtual enviroment ```Scripts\activate```
+* Install following modules:
+  * ```pip install pyyaml```
+  * ```pip install tensorflow```
+  * ```pip install numpy```
+  * ```pip install Pillow```
+  * ```pip install pyautogui```
+* run ```python main.py``` following user interface should appear:\
+![alt text](https://i.imgur.com/rRDoqSS.png)
+# I will create explanation video about installation\run\usage in first 2 days of the game release
