@@ -2,13 +2,14 @@ import utils.global_variables as gv
 from functionality.fishing_actions import *
 from wrappers.model_wrapper import get_model_result
 from wrappers.pyautogui_wrapper import *
+from time import time, sleep
 
 
 def fishing_loop():
     gv.last_results.add(call_appropriate_fishing_action())
     if(gv.last_results.is_full_of('0')):
         if(dict['repairing']['enable'].get() == 1):
-            if(int(time.time()) > gv.last_repair_time + dict['repairing']['every'].get()):
+            if(int(time()) > gv.last_repair_time + dict['repairing']['every'].get()):
                 gv.last_repair_time = int(time.time())
                 repairing()
     if (gv.continue_fishing):
@@ -36,5 +37,5 @@ def call_appropriate_fishing_action():
     elif result_from_model == '3': #3 - model matched the orange/red icon (click and wait 2sec)
         print("Pause fishing")
         initiate_game()
-        time.sleep(2)
+        sleep(2)
         return '3'

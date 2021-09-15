@@ -1,13 +1,13 @@
-from PIL import Image
+from PIL.Image import NEAREST
 from utils.global_variables import SCREENSHOTS_PATH
 import pyautogui
-import time
-import datetime
+from time import sleep
+from datetime import datetime
 
 
 def click_mouse_with_coordinates(x1, y1):
     pyautogui.moveTo(x1, y1)
-    time.sleep(0.05)
+    sleep(0.05)
     pyautogui.click()
 
 def press_key(key):
@@ -24,10 +24,10 @@ def release_mouse_key():
 
 def get_screenshot(x, y, width, height):
     screenshot = pyautogui.screenshot(region=(x, y, width, height))
-    screenshot = screenshot.resize((224, 224), Image.NEAREST)
+    screenshot = screenshot.resize((224, 224), NEAREST)
     return screenshot
 
 def save_screenshot(screenshot):
-    actual_time = datetime.datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S_%f')
+    actual_time = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S_%f')
     file_name = actual_time + ".jpg"
     screenshot.save(SCREENSHOTS_PATH+ file_name)
