@@ -28,7 +28,7 @@ def call_appropriate_fishing_action():
         return '0'
     elif result_from_model == '1': # 1 - model noticed a fish(left click to initiate fishing)
         print("Found a fish!")
-        reel_fish()
+        initiate_game()
         return '1'
     elif result_from_model == '2': #2 - model matched the green icon (reeling a fish in)
         print("Reeling a fish")
@@ -36,6 +36,5 @@ def call_appropriate_fishing_action():
         return '2'
     elif result_from_model == '3': #3 - model matched the orange/red icon (click and wait 2sec)
         print("Pause fishing")
-        initiate_game()
-        sleep(2)
+        pause()
         return '3'
