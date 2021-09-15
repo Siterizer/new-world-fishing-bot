@@ -12,6 +12,9 @@ def reel_fish():
     sleep(1.5)
     release_mouse_key()
 
+def pause():
+    sleep(2)
+
 def repairing():
     print('repair')
     arm_disarm_fishing_rod()
