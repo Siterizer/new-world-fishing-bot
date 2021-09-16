@@ -13,7 +13,8 @@ def fishing_loop():
                 gv.last_repair_time = int(time.time())
                 repairing()
     if (gv.continue_fishing):
-        gv.root.after(10, fishing_loop)
+        gv.root.after(int(dict['fishing']['timeouts']['loop']*1000), fishing_loop)
+
 
 
 def call_appropriate_fishing_action():
@@ -28,7 +29,7 @@ def call_appropriate_fishing_action():
         return '0'
     elif result_from_model == '1': # 1 - model noticed a fish(left click to initiate fishing)
         print("Found a fish!")
-        initiate_game()
+        fish_notice()
         return '1'
     elif result_from_model == '2': #2 - model matched the green icon (reeling a fish in)
         print("Reeling a fish")

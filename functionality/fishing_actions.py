@@ -2,18 +2,18 @@ from utils.config import dict
 from time import sleep
 from wrappers.pyautogui_wrapper import *
 
-def initiate_game():
+def fish_notice():
     press_mouse_key()
-    sleep(0.1)
+    sleep(dict['fishing']['timeouts']['notice'])
     release_mouse_key()
 
 def reel_fish():
     press_mouse_key()
-    sleep(1.5)
+    sleep(dict['fishing']['timeouts']['reeling'])
     release_mouse_key()
 
 def pause():
-    sleep(2)
+    sleep(dict['fishing']['timeouts']['pause'])
 
 def repairing():
     print('repair')
@@ -25,29 +25,29 @@ def repairing():
     arm_disarm_fishing_rod()
 
 def arm_disarm_fishing_rod():
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['arm_disarm'])
     press_key('f3')
     release_key('f3')
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['arm_disarm'])
 
 def open_close_inventory():
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['inventory'])
     press_key('tab')
     release_key('tab')
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['inventory'])
 
 def repair():
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['repair'])
     press_key('r')
     sleep(0.1)
     click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
     sleep(0.1)
     release_key('r')
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['repair'])
 
 def confirm_repair():
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['confirm'])
     press_key('e')
     sleep(0.1)
     release_key('e')
-    sleep(1)
+    sleep(dict['repairing']['timeouts']['confirm'])
