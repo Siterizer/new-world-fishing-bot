@@ -1,7 +1,7 @@
 class LastResults:
     def __init__(self):
       self.data = []
-      self.data+='0'
+      self.data+='1'
     def add(self,val):
         if len(self.data)==20:
             self.data=self.data[1:]+[val]

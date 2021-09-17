@@ -1,14 +1,25 @@
 fishing:
-  height: 635
-  width: 301
   x: 1400
   y: 32
+  width: 301
+  height: 635
+  timeouts:
+    loop: 0.01
+    notice: 1.5
+    reeling: 1.5
+    pause: 2
 repairing:
-  enable: 1
-  every: 400
-  length: 25
   x: 1506
   y: 699
+  length: 25
+  every: 400
+  enable: 1
+  timeouts:
+    arm_disarm: 1
+    inventory: 1
+    repair: 1
+    confirm: 1
 resolution:
   x: 5120
   y: 2160
+log_lvl: INFO
