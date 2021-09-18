@@ -1,7 +1,6 @@
 import utils.global_variables as gv
 from functionality.fishing_actions import *
 from wrappers.model_wrapper import get_model_result
-from wrappers.pyautogui_wrapper import *
 from wrappers.logging_wrapper import info, debug
 from time import time, sleep
 
@@ -23,10 +22,8 @@ def fishing_loop():
 
 
 def call_appropriate_fishing_action():
-    screenshot = get_screenshot(dict['fishing']['x'].get(), dict['fishing']['y'].get(),
-                                dict['fishing']['width'].get(), dict['fishing']['height'].get())
-    #save_screenshot(screenshot) #UNCOMMENT ONLY WHEN YOU NEED TO SAVE YOUR SCREENSHOTS (model training etc.)
-    result_from_model = get_model_result(screenshot)
+    result_from_model = get_model_result(dict['fishing']['x'].get(), dict['fishing']['y'].get(),
+                                         dict['fishing']['width'].get(), dict['fishing']['height'].get())
     if(gv.last_results.get_last_value() != result_from_model and result_from_model != '1' ):
         return result_from_model
     if result_from_model == '0': # 0 - model does not match any data (not fish captured yet)
