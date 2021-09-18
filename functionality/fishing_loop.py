@@ -1,8 +1,7 @@
 import utils.global_variables as gv
 from functionality.fishing_actions import *
-from wrappers.model_wrapper import get_model_result
+from functionality.image_recognition import image_recognition_result
 from wrappers.logging_wrapper import info, debug
-from time import time, sleep
 
 
 def fishing_loop():
@@ -22,7 +21,7 @@ def fishing_loop():
 
 
 def call_appropriate_fishing_action():
-    result_from_model = get_model_result(dict['fishing']['x'].get(), dict['fishing']['y'].get(),
+    result_from_model = image_recognition_result(dict['fishing']['x'].get(), dict['fishing']['y'].get(),
                                          dict['fishing']['width'].get(), dict['fishing']['height'].get())
 
     if(gv.last_results.get_last_value() != result_from_model): # double checking that it is a correct match
