@@ -1,18 +1,16 @@
 from numpy import array
 import cv2 as cv
-from PIL import ImageGrab, Image
-import time
-from utils.config import dict
+from PIL import ImageGrab
 from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
 
 NOTHING = cv.imread(WAITING_FOR_FISH)
 NOTICE = cv.imread(FISH_NOTICED)
-REEL_COLOR=(26, 161, 127)
-WAIT_COLOR_BROWN=(165, 100, 50)
-WAIT_COLOR_RED=(62, 16, 18)
+REEL_COLOR = (26, 161, 127)
+WAIT_COLOR_BROWN = (165, 100, 50)
+WAIT_COLOR_RED = (62, 16, 18)
 COLOR_WAGES = 7
 
-def get_model_result(x, y, width, height):
+def image_recognition_result(x, y, width, height):
     region=(x, y, x + width, y + height)
     img = ImageGrab.grab(bbox = region)
     img_cv = cv.cvtColor(array(img), cv.COLOR_RGB2BGR)
@@ -36,6 +34,6 @@ def get_model_result(x, y, width, height):
 
 def pixel_match(color, matcher):
     for i in range (0,3):
-        if not((matcher[i]-COLOR_WAGES) <= color[i] <= (matcher[i]+COLOR_WAGES)):
+        if not((matcher[i] - COLOR_WAGES) <= color[i] <= (matcher[i] + COLOR_WAGES)):
             return False
     return True
