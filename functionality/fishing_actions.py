@@ -1,6 +1,6 @@
 from utils.config import dict
 from time import sleep
-from wrappers.pyautogui_wrapper import *
+from wrappers.win32api_wrapper import *
 from wrappers.logging_wrapper import debug
 
 def fish_notice():
@@ -43,8 +43,8 @@ def repairing():
 
 def arm_disarm_fishing_rod():
     sleep(dict['repairing']['timeouts']['arm_disarm'])
-    press_key('f3')
-    release_key('f3')
+    press_key('F3')
+    release_key('F3')
     sleep(dict['repairing']['timeouts']['arm_disarm'])
 
 def open_close_inventory():

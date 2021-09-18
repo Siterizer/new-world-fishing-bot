@@ -11,7 +11,6 @@
   * ```pip install tensorflow```
   * ```pip install numpy```
   * ```pip install Pillow```
-  * ```pip install pyautogui```
 * run ```python main.py``` following user interface should appear:\
 ![alt text](https://i.imgur.com/rRDoqSS.png)
 # I will create explanation video about installation\run\usage in first 2 days of the game release
