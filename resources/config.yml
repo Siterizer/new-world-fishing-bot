@@ -8,6 +8,7 @@ fishing:
     notice: 1.5
     reeling: 1.5
     pause: 2
+    cast: 3
 repairing:
   x: 1506
   y: 699

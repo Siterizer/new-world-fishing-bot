@@ -1,4 +1,4 @@
-import numpy as np
+from numpy import array
 import cv2 as cv
 from PIL import ImageGrab, Image
 import time
@@ -14,8 +14,8 @@ COLOR_WAGES = 7
 
 def get_model_result(x, y, width, height):
     region=(x, y, x + width, y + height)
-    img = ImageGrab.grab(bbox=region)
-    img_cv = cv.cvtColor(np.array(img), cv.COLOR_RGB2BGR)
+    img = ImageGrab.grab(bbox = region)
+    img_cv = cv.cvtColor(array(img), cv.COLOR_RGB2BGR)
     res = cv.matchTemplate(img_cv, NOTHING, eval('cv.TM_CCOEFF_NORMED'))
     if((res >= 0.8).any()):
         return '0'
