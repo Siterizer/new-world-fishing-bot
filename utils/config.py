@@ -15,7 +15,8 @@ dict = {
         'loop': config['fishing']['timeouts']['loop'],
         'notice': config['fishing']['timeouts']['notice'],
         'reeling': config['fishing']['timeouts']['reeling'],
-        'pause': config['fishing']['timeouts']['pause']
+        'pause': config['fishing']['timeouts']['pause'],
+        'cast': config['fishing']['timeouts']['cast']
       }
     },
     'repairing':{
@@ -49,7 +50,8 @@ def save_data():
         'loop': dict['fishing']['timeouts']['loop'],
         'notice': dict['fishing']['timeouts']['notice'],
         'reeling': dict['fishing']['timeouts']['reeling'],
-        'pause': dict['fishing']['timeouts']['pause']
+        'pause': dict['fishing']['timeouts']['pause'],
+        'cast': dict['fishing']['timeouts']['cast']
       }
     },
     'repairing':{

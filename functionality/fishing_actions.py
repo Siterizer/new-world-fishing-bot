@@ -19,6 +19,14 @@ def pause():
     debug("Pause for: {} s".format(dict['fishing']['timeouts']['pause']))
     sleep(dict['fishing']['timeouts']['pause'])
 
+def cast():
+    debug("Press mouse key")
+    press_mouse_key()
+    sleep(0.2)
+    release_mouse_key()
+    debug("Pause for: {} s".format(dict['fishing']['timeouts']['cast']))
+    sleep(dict['fishing']['timeouts']['cast'])
+
 def repairing():
     debug("Disarm fishing rod. Total time: {} s".format(dict['repairing']['timeouts']['arm_disarm']))
     arm_disarm_fishing_rod()
