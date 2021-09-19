@@ -1,31 +1,35 @@
-from utils.config import dict
+from utils.config import dict, random_timeout
 from time import sleep
 from wrappers.win32api_wrapper import *
 from wrappers.logging_wrapper import debug
 
 def fish_notice():
-    debug("Press mouse key for: {} s".format(dict['fishing']['timeouts']['notice']))
+    notice_timeout = random_timeout(dict['fishing']['timeouts']['notice'])
+    debug("Press mouse key for: {} s".format(notice_timeout))
     press_mouse_key()
-    sleep(dict['fishing']['timeouts']['notice'])
+    sleep(notice_timeout)
     release_mouse_key()
 
 def reel_fish():
-    debug("Press mouse key for: {} s".format(dict['fishing']['timeouts']['reeling']))
+    reel_timeout = random_timeout(dict['fishing']['timeouts']['reeling'])
+    debug("Press mouse key for: {} s".format(reel_timeout))
     press_mouse_key()
-    sleep(dict['fishing']['timeouts']['reeling'])
+    sleep(reel_timeout)
     release_mouse_key()
 
 def pause():
-    debug("Pause for: {} s".format(dict['fishing']['timeouts']['pause']))
-    sleep(dict['fishing']['timeouts']['pause'])
+    pause_timeout = random_timeout(dict['fishing']['timeouts']['pause'])
+    debug("Pause for: {} s".format(pause_timeout))
+    sleep(pause_timeout)
 
 def cast():
-    debug("Press mouse key")
+    cast_timeout = random_timeout(dict['fishing']['timeouts']['cast'])
+    debug("Pause for: {} s".format(cast_timeout))
     press_mouse_key()
-    sleep(0.2)
+    sleep(cast_timeout)
     release_mouse_key()
-    debug("Pause for: {} s".format(dict['fishing']['timeouts']['cast']))
-    sleep(dict['fishing']['timeouts']['cast'])
+    debug("Pause for: 5 s")
+    sleep(5)
 
 def repairing():
     debug("Disarm fishing rod. Total time: {} s".format(dict['repairing']['timeouts']['arm_disarm']))
