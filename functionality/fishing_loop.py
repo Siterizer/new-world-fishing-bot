@@ -2,6 +2,8 @@ import utils.global_variables as gv
 from functionality.fishing_actions import *
 from functionality.image_recognition import image_recognition_result
 from wrappers.logging_wrapper import info, debug
+from utils.config import dict, random_timeout
+from time import time
 
 
 def fishing_loop():
@@ -16,7 +18,7 @@ def fishing_loop():
                 info("Repairing")
                 repairing()
     if (gv.continue_fishing):
-        gv.root.after(int(dict['fishing']['timeouts']['loop']*1000), fishing_loop)
+        gv.root.after(int(random_timeout(dict['fishing']['timeouts']['loop'])*1000), fishing_loop)
 
 
 

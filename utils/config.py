@@ -1,6 +1,7 @@
 from yaml import safe_load, dump
 from tkinter import IntVar
 from utils.global_variables import CONFIG_PATH
+import random
 
 
 config = safe_load(open(CONFIG_PATH))
@@ -12,11 +13,26 @@ dict = {
       'width': IntVar(value=config['fishing']['width']),
       'height': IntVar(value=config['fishing']['height']),
       'timeouts':{
-        'loop': config['fishing']['timeouts']['loop'],
-        'notice': config['fishing']['timeouts']['notice'],
-        'reeling': config['fishing']['timeouts']['reeling'],
-        'pause': config['fishing']['timeouts']['pause'],
-        'cast': config['fishing']['timeouts']['cast']
+        'loop': {
+          'min': config['fishing']['timeouts']['loop']['min'],
+          'max': config['fishing']['timeouts']['loop']['max']
+        },
+        'notice': {
+          'min': config['fishing']['timeouts']['notice']['min'],
+          'max': config['fishing']['timeouts']['notice']['max']
+        },
+        'reeling': {
+          'min': config['fishing']['timeouts']['reeling']['min'],
+          'max': config['fishing']['timeouts']['reeling']['max']
+        },
+        'pause': {
+          'min': config['fishing']['timeouts']['pause']['min'],
+          'max': config['fishing']['timeouts']['pause']['max']
+        },
+        'cast': {
+          'min': config['fishing']['timeouts']['cast']['min'],
+          'max': config['fishing']['timeouts']['cast']['max']
+        }
       }
     },
     'repairing':{
@@ -47,11 +63,26 @@ def save_data():
       'width': dict['fishing']['width'].get(),
       'height': dict['fishing']['height'].get(),
       'timeouts':{
-        'loop': dict['fishing']['timeouts']['loop'],
-        'notice': dict['fishing']['timeouts']['notice'],
-        'reeling': dict['fishing']['timeouts']['reeling'],
-        'pause': dict['fishing']['timeouts']['pause'],
-        'cast': dict['fishing']['timeouts']['cast']
+        'loop': {
+          'min': dict['fishing']['timeouts']['loop']['min'],
+          'max': dict['fishing']['timeouts']['loop']['max']
+        },
+        'notice': {
+          'min': dict['fishing']['timeouts']['notice']['min'],
+          'max': dict['fishing']['timeouts']['notice']['max']
+        },
+        'reeling': {
+          'min': dict['fishing']['timeouts']['reeling']['min'],
+          'max': dict['fishing']['timeouts']['reeling']['max']
+        },
+        'pause': {
+          'min': dict['fishing']['timeouts']['pause']['min'],
+          'max': dict['fishing']['timeouts']['pause']['max']
+        },
+        'cast': {
+          'min': dict['fishing']['timeouts']['cast']['min'],
+          'max': dict['fishing']['timeouts']['cast']['max']
+        }
       }
     },
     'repairing':{
@@ -75,3 +106,6 @@ def save_data():
   }
     with open(CONFIG_PATH, 'w') as yaml_file:
         dump(d, yaml_file, sort_keys=False)
+
+def random_timeout(key):
+    return round(random.uniform(key['min'], key['max']),2)
