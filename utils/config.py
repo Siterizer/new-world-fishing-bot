@@ -41,11 +41,23 @@ dict = {
       'length': IntVar(value=config['repairing']['length']),
       'every': IntVar(value=config['repairing']['every']),
       'enable': IntVar(value=config['repairing']['enable']),
-      'timeouts':{
-        'arm_disarm': config['repairing']['timeouts']['arm_disarm'],
-        'inventory': config['repairing']['timeouts']['inventory'],
-        'repair': config['repairing']['timeouts']['repair'],
-        'confirm': config['repairing']['timeouts']['confirm']
+      'timeouts': {
+        'arm_disarm': {
+          'min': config['repairing']['timeouts']['arm_disarm']['min'],
+          'max': config['repairing']['timeouts']['arm_disarm']['max']
+        },
+        'inventory': {
+          'min': config['repairing']['timeouts']['inventory']['min'],
+          'max': config['repairing']['timeouts']['inventory']['max']
+        },
+        'repair': {
+          'min': config['repairing']['timeouts']['repair']['min'],
+          'max': config['repairing']['timeouts']['repair']['max']
+        },
+        'confirm': {
+          'min': config['repairing']['timeouts']['confirm']['min'],
+          'max': config['repairing']['timeouts']['confirm']['max']
+        }
       }
     },
     'resolution':{
@@ -91,11 +103,23 @@ def save_data():
       'length': dict['repairing']['length'].get(),
       'every': dict['repairing']['every'].get(),
       'enable': dict['repairing']['enable'].get(),
-      'timeouts':{
-        'arm_disarm': dict['repairing']['timeouts']['arm_disarm'],
-        'inventory': dict['repairing']['timeouts']['inventory'],
-        'repair': dict['repairing']['timeouts']['repair'],
-        'confirm': dict['repairing']['timeouts']['confirm']
+      'timeouts': {
+        'arm_disarm': {
+          'min': dict['repairing']['timeouts']['arm_disarm']['min'],
+          'max': dict['repairing']['timeouts']['arm_disarm']['max']
+        },
+        'inventory': {
+          'min': dict['repairing']['timeouts']['inventory']['min'],
+          'max': dict['repairing']['timeouts']['inventory']['max']
+        },
+        'repair': {
+          'min': dict['repairing']['timeouts']['repair']['min'],
+          'max': dict['repairing']['timeouts']['repair']['max']
+        },
+        'confirm': {
+          'min': dict['repairing']['timeouts']['confirm']['min'],
+          'max': dict['repairing']['timeouts']['confirm']['max']
+        }
       }
     },
     'resolution':{
