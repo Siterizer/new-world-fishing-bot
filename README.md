@@ -1,3 +1,4 @@
+<meta name="google-site-verification" content="PxFqX89lPwajfqh3JZ5RgOKqe2CL5ADLo8OZgG321Jc" />
 # new-world-fishing-bot release 1.0.0 
 (1.1.0 incoming in first 2 days of game release)
 
