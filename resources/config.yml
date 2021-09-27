@@ -1,13 +1,24 @@
 fishing:
-  x: 1400
+  x: 1882
   y: 32
   width: 301
   height: 635
   timeouts:
-    loop: 0.01
-    notice: 1.5
-    reeling: 1.5
-    pause: 2
+    loop:
+      min: 0.01
+      max: 0.01
+    notice:
+      min: 1.5
+      max: 2.0
+    reeling:
+      min: 0.7
+      max: 1.7
+    pause:
+      min: 0.5
+      max: 1.5
+    cast:
+      min: 0.5
+      max: 1.0
 repairing:
   x: 1506
   y: 699
@@ -15,11 +26,19 @@ repairing:
   every: 400
   enable: 1
   timeouts:
-    arm_disarm: 1
-    inventory: 1
-    repair: 1
-    confirm: 1
+    arm_disarm:
+      min: 1
+      max: 1
+    inventory:
+      min: 1
+      max: 1
+    repair:
+      min: 1
+      max: 1
+    confirm:
+      min: 1
+      max: 1
 resolution:
   x: 5120
   y: 2160
-log_lvl: INFO
+log_lvl:
