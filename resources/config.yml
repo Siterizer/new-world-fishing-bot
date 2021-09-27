@@ -41,4 +41,4 @@ repairing:
 resolution:
   x: 5120
   y: 2160
-log_lvl:
+log_lvl: INFO

@@ -13,8 +13,8 @@
   * ```pip install numpy```
   * ```pip install opencv-python```
   * ```pip install Pillow```
-* run ```python main.py``` following user interface should appear:\
-![alt text](https://i.imgur.com/rRDoqSS.png)
+* run ```python bot.py``` following user interface should appear:\
+![alt text](https://i.imgur.com/C1oW6IS.png)
 # If you would like to create your own .exe file:
 1. Install: ```pip install pyinstaller```
 2. Run following command: ```pyinstaller --add-data resources;resources main.py```
