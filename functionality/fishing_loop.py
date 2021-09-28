@@ -7,6 +7,8 @@ from time import time
 
 
 def fishing_loop():
+    if (not gv.continue_fishing):
+        return
     debug('starting new loop')
     gv.last_results.add(call_appropriate_fishing_action())
     if(gv.last_results.is_full_of('0')):
