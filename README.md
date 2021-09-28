@@ -8,7 +8,7 @@
 * When you run file bot.exe following user interface should appear:\
   ![alt text](https://i.imgur.com/d6CWy0c.png)
 
-#Usage guide
+# Usage guide
 * Before you start fishing you need to indicate correct fishing positions\
   The left ('Fishing') panel inputs are the pointing area where fishing icons are going to appear\
   The best way to configure it is to open the game, stand over the fishing ground\
@@ -20,7 +20,7 @@
   ![alt text](https://i.imgur.com/caYEloT.png)
 * Now all you have to do is click the ‘Start fishing’ button and move the mouse cursor into the game window.
 
-#Personalization guide
+# Personalization guide
 * Repairing functionality will work every interval you set on the panel and is activated while searching for a fish\
   Each interval, starting with casting the fishing rod, retrieving the fish, opening the inventory for repairs, is possible to change\
   Close app, go to your installation folder, open resources and open config.xml with any text editor you have\
