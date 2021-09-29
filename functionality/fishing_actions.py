@@ -24,14 +24,23 @@ def pause():
 
 def cast():
     cast_timeout = random_timeout(dict['fishing']['timeouts']['cast'])
+    debug("Pause for: 6 s")
+    sleep(6)
+    debug("release b")
+    release_key('b')
+    debug("Pause for: 1 s")
+    sleep(1)
     debug("Pause for: {} s".format(cast_timeout))
     press_mouse_key()
     sleep(cast_timeout)
     release_mouse_key()
     debug("Pause for: 5 s")
     sleep(5)
+    debug("press b")
+    press_key('b')
 
 def repairing():
+    release_key('b')
     arm_disarm_timeout = random_timeout(dict['repairing']['timeouts']['arm_disarm'])
     debug("Disarm fishing rod. Total time: {} s".format(arm_disarm_timeout))
     arm_disarm_fishing_rod(arm_disarm_timeout)
@@ -81,4 +90,3 @@ def confirm_repair(timeout):
     sleep(0.1)
     release_key('e')
     sleep(timeout)
-    r

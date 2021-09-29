@@ -28,7 +28,7 @@ def call_appropriate_fishing_action():
     result_from_model = image_recognition_result(dict['fishing']['x'].get(), dict['fishing']['y'].get(),
                                          dict['fishing']['width'].get(), dict['fishing']['height'].get())
 
-    if(gv.last_results.get_last_value() != result_from_model): # double checking that it is a correct match
+    if(gv.last_results.get_last_value() != result_from_model and result_from_model != '1'): # double checking that it is a correct match
         return result_from_model
     if result_from_model == '0': # 0 - model does not match any data (not fish captured yet)
         info("Waiting for fish...")

@@ -8,6 +8,13 @@
 * When you run file bot.exe following user interface should appear:\
   ![alt text](https://i.imgur.com/d6CWy0c.png)
 
+# Game settings
+* Resolution 1920x1080 low details:\
+  ![alt text](https://i.imgur.com/jtXCsw0.png)
+
+*Standard key bindings, **except of 'CAMERA' -> 'FREE LOOK' key binding, it must be 'B'!**\
+  ![alt text](https://i.imgur.com/oGIdYhR.png)
+
 # Usage guide
 * Before you start fishing you need to indicate correct fishing positions\
   The left ('Fishing') panel inputs are the pointing area where fishing icons are going to appear\

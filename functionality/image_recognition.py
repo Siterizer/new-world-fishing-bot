@@ -6,7 +6,7 @@ from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
 NOTHING = cv.imread(WAITING_FOR_FISH)
 NOTICE = cv.imread(FISH_NOTICED)
 REEL_COLOR = (26, 161, 127)
-WAIT_COLOR_BROWN = (165, 100, 50)
+WAIT_COLOR_BROWN = (173, 92, 32)
 WAIT_COLOR_RED = (62, 16, 18)
 COLOR_WAGES = 7
 
@@ -15,10 +15,10 @@ def image_recognition_result(x, y, width, height):
     img = ImageGrab.grab(bbox = region)
     img_cv = cv.cvtColor(array(img), cv.COLOR_RGB2BGR)
     res = cv.matchTemplate(img_cv, NOTHING, eval('cv.TM_CCOEFF_NORMED'))
-    if((res >= 0.8).any()):
+    if((res >= 0.7).any()):
         return '0'
     res = cv.matchTemplate(img_cv, NOTICE, eval('cv.TM_CCOEFF_NORMED'))
-    if((res >= 0.8).any()):
+    if((res >= 0.7).any()):
         return '1'
 
     for i in range(width):
