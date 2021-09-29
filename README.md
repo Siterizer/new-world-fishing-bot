@@ -1,4 +1,4 @@
-# new-world-fishing-bot release 1.1.0
+# new-world-fishing-bot release 1.1.1
 
 # Download guide
 * Click at latest release:\
