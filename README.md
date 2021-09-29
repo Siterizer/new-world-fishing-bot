@@ -12,7 +12,7 @@
 * Resolution 1920x1080 low details:\
   ![alt text](https://i.imgur.com/jtXCsw0.png)
 
-*Standard key bindings, **except of 'CAMERA' -> 'FREE LOOK' key binding, it must be 'B'!**\
+* Standard key bindings, **except of 'CAMERA' -> 'FREE LOOK' key binding, it must be 'B'!**\
   ![alt text](https://i.imgur.com/oGIdYhR.png)
 
 # Usage guide
