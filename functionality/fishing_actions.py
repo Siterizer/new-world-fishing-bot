@@ -16,6 +16,9 @@ def reel_fish():
     press_mouse_key()
     sleep(reel_timeout)
     release_mouse_key()
+    press_mouse_key()
+    sleep(reel_timeout)
+    release_mouse_key()
 
 def pause():
     pause_timeout = random_timeout(dict['fishing']['timeouts']['pause'])
