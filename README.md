@@ -15,7 +15,7 @@
 * Standard key bindings, **except of 'CAMERA' -> 'FREE LOOK' key binding, it must be 'B'!**\
   ![alt text](https://i.imgur.com/oGIdYhR.png)
   
-* Visuals as follow:**\
+* Visuals as follow:\
   ![alt text](https://i.imgur.com/bkiBTfu.png)
 
 # Usage guide
