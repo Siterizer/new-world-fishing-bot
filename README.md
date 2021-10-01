@@ -17,6 +17,9 @@
   
 * Visuals as follow:\
   ![alt text](https://i.imgur.com/bkiBTfu.png)
+  
+* Remember to set you windows Scale to 100%:\
+  ![alt text](https://i.imgur.com/0302u4A.png)
 
 # Usage guide
 * Before you start fishing you need to indicate correct fishing positions\
