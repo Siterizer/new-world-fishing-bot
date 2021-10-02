@@ -1,5 +1,8 @@
 # new-world-fishing-bot release 1.1.1
 
+[![Demonstration](https://i.imgur.com/SLQC3oT.png)](https://www.youtube.com/watch?v=fxEKNIxCn38)
+click img for demonstration
+
 # Download guide
 * Click at latest release:\
   ![alt text](https://i.imgur.com/Dj1hNl2.png)
