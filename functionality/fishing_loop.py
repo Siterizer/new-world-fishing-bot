@@ -19,7 +19,7 @@ def fishing_loop():
                 gv.last_repair_time = int(time())
                 info("Repairing")
                 repairing()
-                if dict['bait']['enable']:
+                if dict['bait']['enable'].get():
                     info("Selecting bait")
                     select_bait()
     if (gv.continue_fishing):
