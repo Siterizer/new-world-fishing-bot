@@ -5,9 +5,9 @@ from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
 
 NOTHING = cv.imread(WAITING_FOR_FISH)
 NOTICE = cv.imread(FISH_NOTICED)
-REEL_COLOR = (26, 161, 127)
-WAIT_COLOR_BROWN = (173, 92, 32)
-WAIT_COLOR_RED = (62, 16, 18)
+REEL_COLOR = (4, 227, 162)
+WAIT_COLOR_BROWN = (230, 110, 22)
+WAIT_COLOR_RED = (109, 18, 21)
 COLOR_WAGES = 7
 
 def image_recognition_result(x, y, width, height):
