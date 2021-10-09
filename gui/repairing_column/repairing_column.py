@@ -9,7 +9,7 @@ def repairing_column():
     repairing_column_header = Label(gv.root, text = "Repairing")
     repairing_column_header.grid(row=0, column=1, pady=(3, 0))
     repairing_column = LabelFrame(gv.root)
-    repairing_column.grid(row=1, column=1, padx=(10, 10), pady=(0, 53))
+    repairing_column.grid(row=1, column=1, padx=(10, 0), pady=(0, 118))
     repairing_column_position_header = Label(repairing_column, text = "Click position (px)")
     repairing_column_position_header.grid(row=0, column=0)
 
