@@ -12,14 +12,12 @@ click img for demonstration
   ![alt text](https://i.imgur.com/d6CWy0c.png)
 
 # Game settings
-* Resolution 1920x1080 low details:\
-  ![alt text](https://i.imgur.com/jtXCsw0.png)
+* Visuals: resolution 1920x1080, contrast/brightness default, low details:\
+  ![alt text](https://i.imgur.com/VnfYTrA.png)
 
 * Standard key bindings, **except of 'CAMERA' -> 'FREE LOOK' key binding, it must be 'B'!**\
   ![alt text](https://i.imgur.com/oGIdYhR.png)
   
-* Visuals as follow:\
-  ![alt text](https://i.imgur.com/bkiBTfu.png)
   
 * Remember to set you windows Scale to 100%:\
   ![alt text](https://i.imgur.com/0302u4A.png)
