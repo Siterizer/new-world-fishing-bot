@@ -5,3 +5,6 @@ saved_data/screenshots/*
 Lib/
 Scripts/
 pyvenv.cfg
+bot.spec
+build/
+dist
