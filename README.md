@@ -29,9 +29,12 @@ click img for demonstration
   set a rectangle so that most of it is on the right side of the character, and set the appropriate height\
   ![alt text](https://i.imgur.com/4mikQR1.png)
 * The smaller the rectangle, the faster the program will run - because it will have fewer pixels to check\
-  I strongly suggest setting the repair positions at this point as well\
+  I strongly suggest setting the repair/bait positions at this point as well\
   Just open the inventory, and set positions so that it completely covers the rod\
   ![alt text](https://i.imgur.com/caYEloT.png)
+  
+  Do the same, for the bait buttons
+  ![alt text](https://i.imgur.com/3NZ5tg5.png)
 * Now all you have to do is click the ‘Start fishing’ button and move the mouse cursor into the game window.
 
 # Personalization guide
@@ -51,7 +54,9 @@ click img for demonstration
 7. inventory - time the program will wait before/after opening/closing your inventory
 8. repair - time the program will wait before/after clicking the fishing rod
 9. confirm - time the program will wait before/after confirming repair
-10. Additionally, if you want the program to display more information while fishing, change 'log_lvl' from INFO to DEBUG.\
+10. select - time the program will wait after selecting a bait
+11. confirm - time the program will wait after 'Equip Bait' button
+12. Additionally, if you want the program to display more information while fishing, change 'log_lvl' from INFO to DEBUG.\
 
 # Code installation guide
 * Clone repo ```git clone https://github.com/Siterizer/new-world-fishing-bot.git```
