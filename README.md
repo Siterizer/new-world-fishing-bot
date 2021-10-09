@@ -58,8 +58,8 @@ click img for demonstration
 # Code installation guide
 * Clone repo ```git clone https://github.com/Siterizer/new-world-fishing-bot.git```
 * Install python https://www.python.org/downloads/
-* Create python virtual enviroment ```python3 -m venv instalation_directory\new-world-fishing-bot```
-* Enter virtual enviroment ```Scripts\activate```
+* Create python virtual environment ```python3 -m venv instalation_directory\new-world-fishing-bot```
+* Enter virtual environment ```Scripts\activate```
 * Install modules: ```pip install -r requirements.txt```
 * run ```python bot.py``` following user interface should appear:\
 ![alt text](https://i.imgur.com/C1oW6IS.png)
