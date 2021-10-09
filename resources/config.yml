@@ -38,6 +38,20 @@ repairing:
     confirm:
       min: 1
       max: 1
+bait:
+  bait_x: 1930
+  bait_y: 650
+  equip_button_x: 2200
+  equip_button_y: 1000
+  length: 25
+  enable: 1
+  timeouts:
+    select:
+      min: 0.1
+      max: 1
+    confirm:
+      min: 0.1
+      max: 1
 resolution:
   x: 5120
   y: 2160

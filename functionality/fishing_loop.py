@@ -19,6 +19,9 @@ def fishing_loop():
                 gv.last_repair_time = int(time())
                 info("Repairing")
                 repairing()
+                if dict['bait']['enable'].get():
+                    info("Selecting bait")
+                    select_bait()
     if (gv.continue_fishing):
         gv.root.after(int(random_timeout(dict['fishing']['timeouts']['loop'])*1000), fishing_loop)
 
@@ -31,21 +34,26 @@ def call_appropriate_fishing_action():
     if(gv.last_results.get_last_value() != result_from_model and result_from_model != '1'): # double checking that it is a correct match
         return result_from_model
     if result_from_model == '0': # 0 - model does not match any data (not fish captured yet)
-        info("Waiting for fish...")
+        if(gv.last_results.get_one_before_last_value() != '0'):
+            info("Waiting for fish...")
         return '0'
     elif result_from_model == '1': # 1 - model noticed a fish(left click to initiate fishing)
-        info("Found a fish!")
+        info("Green color spotted, Found a fish!")
         fish_notice()
         return '1'
     elif result_from_model == '2': #2 - model matched the green icon (reeling a fish in)
         info("Reeling a fish")
         reel_fish()
         return '2'
-    elif result_from_model == '3': #3 - model matched the orange/red icon (wait x sec)
-        info("Pause fishing")
+    elif result_from_model == '3': #3 - model matched the orange icon (wait x sec)
+        info("Orange color spotted, Pause fishing")
         pause()
         return '3'
-    elif result_from_model == '4': #4 - model did not match anything (left click, wait x sec)
+    elif result_from_model == '4': #4 - model matched the red icon (wait x sec)
+        info("Red color spotted, Pause fishing")
+        pause()
+        return '4'
+    elif result_from_model == '5': #5 - model did not match anything (left click, wait x sec)
         info("Cast fishing rod")
         cast()
-        return '4'
+        return '5'

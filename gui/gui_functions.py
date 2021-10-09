@@ -33,6 +33,16 @@ def change_repair_button_state(button):
         button.configure(bg="green")
         dict['repairing']['enable'] = IntVar(value=1)
 
+def change_bait_button_state(button):
+    if (dict['bait']['enable'].get() == 1):
+        button.configure(text="OFF")
+        button.configure(bg="red")
+        dict['bait']['enable'] = IntVar(value=0)
+    else:
+        button.configure(text="ON ")
+        button.configure(bg="green")
+        dict['bait']['enable'] = IntVar(value=1)
+
 def changeFishingState(button):
     gv.continue_fishing = not gv.continue_fishing
     if(gv.continue_fishing):
