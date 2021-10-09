@@ -1,4 +1,4 @@
-# new-world-fishing-bot release 1.1.1
+# new-world-fishing-bot release 1.2.0
 
 [![Demonstration](https://i.imgur.com/SLQC3oT.png)](https://www.youtube.com/watch?v=fxEKNIxCn38)
 click img for demonstration
@@ -9,7 +9,7 @@ click img for demonstration
 * Download and extract bot.zip:\
   ![alt text](https://i.imgur.com/HFLQu24.png)
 * When you run file bot.exe following user interface should appear:\
-  ![alt text](https://i.imgur.com/d6CWy0c.png)
+  ![alt text](https://i.imgur.com/G2XeHbX.png)
 
 # Game settings
 * Visuals: resolution 1920x1080, contrast/brightness default, low details:\
@@ -32,8 +32,7 @@ click img for demonstration
   I strongly suggest setting the repair/bait positions at this point as well\
   Just open the inventory, and set positions so that it completely covers the rod\
   ![alt text](https://i.imgur.com/caYEloT.png)
-  
-  Do the same, for the bait buttons
+* Do the same, for the bait buttons\
   ![alt text](https://i.imgur.com/3NZ5tg5.png)
 * Now all you have to do is click the ‘Start fishing’ button and move the mouse cursor into the game window.
 
