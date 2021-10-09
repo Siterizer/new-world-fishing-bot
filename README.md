@@ -64,7 +64,7 @@ click img for demonstration
 * Enter virtual environment ```Scripts\activate```
 * Install modules: ```pip install -r requirements.txt```
 * run ```python bot.py``` following user interface should appear:\
-![alt text](https://i.imgur.com/C1oW6IS.png)
+![alt text](https://i.imgur.com/Pgv97yv.png)
 # If you would like to create your own .exe file:
 1. Install: ```pip install pyinstaller```
 2. Run following command: ```pyinstaller --add-data resources;resources bot.py```
