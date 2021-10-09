@@ -2,3 +2,6 @@
 __pycache__/
 saved_data/screenshots/*
 !saved_data/screenshots/.gitkeep
+Lib/
+Scripts/
+pyvenv.cfg
