@@ -1,5 +1,8 @@
 # new-world-fishing-bot release 1.1.1
 
+[![Demonstration](https://i.imgur.com/SLQC3oT.png)](https://www.youtube.com/watch?v=fxEKNIxCn38)
+click img for demonstration
+
 # Download guide
 * Click at latest release:\
   ![alt text](https://i.imgur.com/Dj1hNl2.png)
@@ -9,11 +12,15 @@
   ![alt text](https://i.imgur.com/d6CWy0c.png)
 
 # Game settings
-* Resolution 1920x1080 low details:\
-  ![alt text](https://i.imgur.com/jtXCsw0.png)
+* Visuals: resolution 1920x1080, contrast/brightness default, low details:\
+  ![alt text](https://i.imgur.com/VnfYTrA.png)
 
 * Standard key bindings, **except of 'CAMERA' -> 'FREE LOOK' key binding, it must be 'B'!**\
   ![alt text](https://i.imgur.com/oGIdYhR.png)
+  
+  
+* Remember to set you windows Scale to 100%:\
+  ![alt text](https://i.imgur.com/0302u4A.png)
 
 # Usage guide
 * Before you start fishing you need to indicate correct fishing positions\
@@ -49,14 +56,9 @@
 # Code installation guide
 * Clone repo ```git clone https://github.com/Siterizer/new-world-fishing-bot.git```
 * Install python https://www.python.org/downloads/
-* Create python virtual enviroment ```python3 -m venv instalation_directory\new-world-fishing-bot```
-* Enter virtual enviroment ```Scripts\activate```
-* Install following modules:
-  * ```pip install pyyaml```
-  * ```pip install pywin32```
-  * ```pip install numpy```
-  * ```pip install opencv-python```
-  * ```pip install Pillow```
+* Create python virtual environment ```python3 -m venv instalation_directory\new-world-fishing-bot```
+* Enter virtual environment ```Scripts\activate```
+* Install modules: ```pip install -r requirements.txt```
 * run ```python bot.py``` following user interface should appear:\
 ![alt text](https://i.imgur.com/C1oW6IS.png)
 # If you would like to create your own .exe file:
