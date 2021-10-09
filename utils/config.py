@@ -78,6 +78,11 @@ dict = {
         }
       }
     },
+    'colors':{
+      'green': (config['colors']['green']['r'], config['colors']['green']['g'], config['colors']['green']['b']),
+      'brown': (config['colors']['brown']['r'], config['colors']['brown']['g'], config['colors']['brown']['b']),
+      'red': (config['colors']['red']['r'], config['colors']['red']['g'], config['colors']['red']['b'])
+    },
     'resolution':{
       'x': config['resolution']['x'],
       'y': config['resolution']['y']
@@ -158,10 +163,27 @@ def save_data():
         }
       }
     },
+    'colors':{
+      'green': {
+        'r': dict['colors']['green'][0],
+        'g': dict['colors']['green'][1],
+        'b': dict['colors']['green'][2]
+      },
+      'brown': {
+        'r': dict['colors']['brown'][0],
+        'g': dict['colors']['brown'][1],
+        'b': dict['colors']['brown'][2]
+      },
+      'red': {
+        'r': dict['colors']['red'][0],
+        'g': dict['colors']['red'][1],
+        'b': dict['colors']['red'][2]
+      }
+    },
     'resolution':{
       'x': dict['resolution']['x'],
       'y': dict['resolution']['y']
-      },
+    },
     'log_lvl': dict['log_lvl']
     }
     with open(CONFIG_PATH, 'w') as yaml_file:

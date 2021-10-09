@@ -1,3 +1,4 @@
+from utils.config import dict
 from numpy import array
 import cv2 as cv
 from PIL import ImageGrab
@@ -5,9 +6,9 @@ from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
 
 NOTHING = cv.imread(WAITING_FOR_FISH)
 NOTICE = cv.imread(FISH_NOTICED)
-REEL_COLOR = (4, 227, 162)
-WAIT_COLOR_BROWN = (230, 110, 22)
-WAIT_COLOR_RED = (109, 18, 21)
+REEL_COLOR = dict['colors']['green']
+WAIT_COLOR_BROWN = dict['colors']['brown']
+WAIT_COLOR_RED = dict['colors']['red']
 COLOR_WAGES = 7
 
 def image_recognition_result(x, y, width, height):

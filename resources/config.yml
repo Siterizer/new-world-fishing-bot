@@ -44,7 +44,7 @@ bait:
   equip_button_x: 2200
   equip_button_y: 1000
   length: 25
-  enable: 1
+  enable: 0
   timeouts:
     select:
       min: 0.1
@@ -52,6 +52,19 @@ bait:
     confirm:
       min: 0.1
       max: 1
+colors:
+  green:
+    r: 4
+    g: 227
+    b: 162
+  brown:
+    r: 230
+    g: 110
+    b: 22
+  red:
+    r: 109
+    g: 18
+    b: 21
 resolution:
   x: 5120
   y: 2160
