@@ -13,3 +13,6 @@ class LastResults:
 
     def get_last_value(self):
         return self.data[-1]
+
+    def get_one_before_last_value(self):
+        return self.data[-2]
