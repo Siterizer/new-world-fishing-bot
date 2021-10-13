@@ -1,7 +1,6 @@
 from utils.config import dict
 from numpy import array
 import cv2 as cv
-import numpy as np
 from PIL import ImageGrab
 from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
 
