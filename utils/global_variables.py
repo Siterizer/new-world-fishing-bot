@@ -4,7 +4,6 @@ import sys
 from time import time
 from tkinter import Tk
 
-
 def rootPath():
     try:
         return sys._MEIPASS
