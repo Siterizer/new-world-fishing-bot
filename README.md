@@ -1,4 +1,4 @@
-# new-world-fishing-bot release 1.2.0
+# new-world-fishing-bot release 1.2.1
 
 [![Demonstration](https://i.imgur.com/SLQC3oT.png)](https://www.youtube.com/watch?v=fxEKNIxCn38)
 click img for demonstration
@@ -53,9 +53,10 @@ click img for demonstration
 7. inventory - time the program will wait before/after opening/closing your inventory
 8. repair - time the program will wait before/after clicking the fishing rod
 9. confirm - time the program will wait before/after confirming repair
-10. select - time the program will wait after selecting a bait
-11. confirm - time the program will wait after 'Equip Bait' button
-12. Additionally, if you want the program to display more information while fishing, change 'log_lvl' from INFO to DEBUG.\
+10. move_around - time the program will move left/right after Repairing button
+11. select - time the program will wait after selecting a bait
+12. confirm - time the program will wait after 'Equip Bait' button
+13. Additionally, if you want the program to display more information while fishing, change 'log_lvl' from INFO to DEBUG.
 
 # Code installation guide
 * Clone repo ```git clone https://github.com/Siterizer/new-world-fishing-bot.git```
