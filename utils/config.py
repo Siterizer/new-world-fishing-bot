@@ -57,6 +57,10 @@ dict = {
         'confirm': {
           'min': config['repairing']['timeouts']['confirm']['min'],
           'max': config['repairing']['timeouts']['confirm']['max']
+        },
+        'move_around': {
+          'min': config['repairing']['timeouts']['move_around']['min'],
+          'max': config['repairing']['timeouts']['move_around']['max']
         }
       }
     },
@@ -142,6 +146,10 @@ def save_data():
         'confirm': {
           'min': dict['repairing']['timeouts']['confirm']['min'],
           'max': dict['repairing']['timeouts']['confirm']['max']
+        },
+        'move_around': {
+          'min': dict['repairing']['timeouts']['move_around']['min'],
+          'max': dict['repairing']['timeouts']['move_around']['max']
         }
       }
     },

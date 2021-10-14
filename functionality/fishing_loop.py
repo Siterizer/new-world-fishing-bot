@@ -46,7 +46,6 @@ def call_appropriate_fishing_action():
         reel_fish()
         return '2'
     elif result_from_model == '3': #3 - model matched the orange icon (wait x sec)
-        info("Orange color spotted, Pause fishing")
         if(gv.last_results.are_too_much_pauses()):
             info("Too much pauses, Reeling a fish!")
             reel_fish()
