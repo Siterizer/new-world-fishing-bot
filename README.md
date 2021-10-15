@@ -23,9 +23,10 @@ click img for demonstration
   ![alt text](https://i.imgur.com/0302u4A.png)
 
 # Support
-* Finally, after 2 weeks of the game release i am able to receive donations in Bitcoin.
-Wallet addess: 3KpsEkGrMz1F9uxSgDbw92jvGqa5JoQpEC\
-Thank you for your support, i gonna buy some coke for that :DD
+* Finally, after 2 weeks of the game release i am able to receive donations: 
+  * Bitcoin Wallet addess: 3KpsEkGrMz1F9uxSgDbw92jvGqa5JoQpEC
+  * ETH Wallet addess: 0x335d217961a839899ee03a9a78b56fb77cba95b3\
+  Thank you for your support, i gonna buy some coke for that :DD
 
 # Usage guide
 * Before you start fishing you need to indicate correct fishing positions\
