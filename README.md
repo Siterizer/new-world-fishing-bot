@@ -27,11 +27,11 @@ click img for demonstration
   The left ('Fishing') panel inputs are the pointing area where fishing icons are going to appear\
   The best way to configure it is to open the game, stand over the fishing ground\
   set a rectangle so that most of it is on the right side of the character, and set the appropriate height\
-  ![alt text](https://i.imgur.com/4mikQR1.png)
+  ![alt text](https://i.imgur.com/asa3EBo.png)
 * The smaller the rectangle, the faster the program will run - because it will have fewer pixels to check\
   I strongly suggest setting the repair/bait positions at this point as well\
   Just open the inventory, and set positions so that it completely covers the rod\
-  ![alt text](https://i.imgur.com/caYEloT.png)
+  ![alt text](https://i.imgur.com/4tdJxPA.png)
 * Do the same, for the bait buttons\
   ![alt text](https://i.imgur.com/3NZ5tg5.png)
 * Now all you have to do is click the ‘Start fishing’ button and move the mouse cursor into the game window.
