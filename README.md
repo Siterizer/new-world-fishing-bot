@@ -24,7 +24,7 @@ click img for demonstration
 
 # Support
 * Finally, after 2 weeks of the game release i am able to receive donations in Bitcoin.
-Wallet addess: 3KpsEkGrMz1F9uxSgDbw92jvGqa5JoQpEC
+Wallet addess: 3KpsEkGrMz1F9uxSgDbw92jvGqa5JoQpEC\
 Thank you for your support, i gonna buy some coke for that :DD
 
 # Usage guide
