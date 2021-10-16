@@ -63,6 +63,10 @@ def repairing():
     debug("Arm fishing rod. Total time: {} s".format(arm_disarm_timeout))
     arm_disarm_fishing_rod(arm_disarm_timeout)
 
+    move_around = random_timeout(dict['repairing']['timeouts']['move_around'])
+    debug("Move to prevent AFK kick. Total time:  {} s".format(move_around))
+    move_left_right(move_around)
+
 def arm_disarm_fishing_rod(timeout):
     sleep(timeout)
     press_key('F3')
@@ -90,6 +94,15 @@ def confirm_repair(timeout):
     sleep(0.1)
     release_key('e')
     sleep(timeout)
+
+def move_left_right(timeout):
+    press_key('a')
+    sleep(timeout)
+    release_key('a')
+    sleep(1.0)
+    press_key('d')
+    sleep(timeout)
+    release_key('d')
 
 def select_bait():
     release_key('b')
