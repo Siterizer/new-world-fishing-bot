@@ -1,7 +1,7 @@
 from tkinter import Label, LabelFrame, Button
-from utils.config import dict
 from functools import partial
 from gui.gui_functions import change_repair_button_state
+
 
 def repairing_column_enable(repairing_column):
     repairing_column_enable_container = LabelFrame(repairing_column)
@@ -11,5 +11,7 @@ def repairing_column_enable(repairing_column):
     repairing_column_enable_button = Button(repairing_column_enable_container)
     change_repair_button_state(repairing_column_enable_button)
     change_repair_button_state(repairing_column_enable_button)
-    repairing_column_enable_button.configure(command = partial(change_repair_button_state, repairing_column_enable_button))
+    repairing_column_enable_button.configure(
+        command=partial(change_repair_button_state, repairing_column_enable_button)
+    )
     repairing_column_enable_button.grid(row=0, column=1, padx=(0, 13))

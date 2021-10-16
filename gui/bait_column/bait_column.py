@@ -5,8 +5,9 @@ from gui.bait_column.components.show_button import *
 import utils.global_variables as gv
 from tkinter import Label, LabelFrame
 
+
 def bait_column():
-    bait_column_header = Label(gv.root, text = "Bait")
+    bait_column_header = Label(gv.root, text="Bait")
     bait_column_header.grid(row=0, column=3, pady=(3, 0))
     bait_column = LabelFrame(gv.root)
     bait_column.grid(row=1, column=3, padx=(10, 0), pady=(0, 6))

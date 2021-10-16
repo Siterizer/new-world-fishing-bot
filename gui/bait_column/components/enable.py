@@ -1,7 +1,7 @@
 from tkinter import Label, LabelFrame, Button
-from utils.config import dict
 from functools import partial
 from gui.gui_functions import change_bait_button_state
+
 
 def bait_column_enable(bait_column):
     bait_column_enable_container = LabelFrame(bait_column)
@@ -11,5 +11,5 @@ def bait_column_enable(bait_column):
     bait_column_enable_button = Button(bait_column_enable_container)
     change_bait_button_state(bait_column_enable_button)
     change_bait_button_state(bait_column_enable_button)
-    bait_column_enable_button.configure(command = partial(change_bait_button_state, bait_column_enable_button))
+    bait_column_enable_button.configure(command=partial(change_bait_button_state, bait_column_enable_button))
     bait_column_enable_button.grid(row=0, column=1, padx=(50, 14))
