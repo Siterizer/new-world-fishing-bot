@@ -28,16 +28,19 @@ repairing:
   timeouts:
     arm_disarm:
       min: 1
-      max: 1
+      max: 1.5
     inventory:
       min: 1
-      max: 1
+      max: 1.5
     repair:
       min: 1
-      max: 1
+      max: 1.5
     confirm:
       min: 1
-      max: 1
+      max: 1.5
+    move_around:
+      min: 0.5
+      max: 1.0
 bait:
   bait_x: 1160
   bait_y: 450
