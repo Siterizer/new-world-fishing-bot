@@ -6,6 +6,7 @@ from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
 from os import path
 import configparser
 
+
 #Baseline Resolution at which the templates were recorded
 base_width = 1920
 base_height = 1080
@@ -18,28 +19,31 @@ if path.isfile(nw_config_path):
     config.read_string(config_string)
     scaleX = int(config['dummy_section']["r_Width"]) / base_width
     scaleY = int(config['dummy_section']["r_Height"]) / base_height
-    print(scaleX)
 else:
-  scaleX = 1
-  scaleY = 1
+    scaleX = 1
+    scaleY = 1
+
+#Determine which scale to use
+aspect_factor = int(config['dummy_section']["r_Width"]) / int(config['dummy_section']["r_Height"])
+if (aspect_factor == 16/9 or aspect_factor == 16/10):
+    scale = scaleX
+elif(aspect_factor == 21/9 or aspect_factor == 32/9):
+    scale = scaleY
 
 NOTHING = cv.imread(WAITING_FOR_FISH)
-width = int(NOTHING.shape[1] * scaleX)
-height = int(NOTHING.shape[1] * scaleY)
+width = int(NOTHING.shape[1] * scale)
+height = int(NOTHING.shape[1] * scale)
 dim = (width, height)  
 NOTHING = cv.resize(NOTHING, dim, cv.INTER_LINEAR)
 NOTICE = cv.imread(FISH_NOTICED)
-width = int(NOTICE.shape[1] * scaleX)
-height = int(NOTICE.shape[1] * scaleY)
+width = int(NOTICE.shape[1] * scale)
+height = int(NOTICE.shape[1] * scale)
 dim = (width, height)  
 NOTICE = cv.resize(NOTICE, dim, cv.INTER_LINEAR)
 REEL_COLOR = dict['colors']['green']
 WAIT_COLOR_BROWN = dict['colors']['brown']
 WAIT_COLOR_RED = dict['colors']['red']
 COLOR_WAGES = 7
-
-
-
 
 def image_recognition_result(x, y, width, height):
     region=(x, y, x + width, y + height)
