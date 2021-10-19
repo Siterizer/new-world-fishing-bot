@@ -3,15 +3,29 @@ from functools import partial
 from utils.config import dict, save_data
 from functionality.fishing_loop import fishing_loop
 import utils.global_variables as gv
+from winreg import *
 
 
 def popup_rectangle_window(button, x, y, width, height):
+    #Get Windows DPI Scale
+    Registry = ConnectRegistry(None, HKEY_CURRENT_USER)
+    RawKey = OpenKey(Registry, "Control Panel\Desktop\WindowMetrics")
+    key_dict = {}
+    i = 0
+    while True:
+        try:
+            subvalue = EnumValue(RawKey, i)
+        except WindowsError as e:
+            break
+        key_dict[subvalue[0]] = subvalue[1:]
+        i+=1
     window = Toplevel()
     window.resizable(False, False)
     window.attributes('-fullscreen', True)
     window.wm_attributes('-transparentcolor', window['bg'])
     canvas = Canvas(window, width=10000, height=10000)
-    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), outline="green", width=5)
+    dpiScale = (key_dict["AppliedDPI"][0] / 96)
+    canvas.create_rectangle(x.get()/ dpiScale, y.get()/ dpiScale, x.get()+width.get()/ dpiScale, y.get()+height.get()/ dpiScale, outline="green", width=5)
     canvas.pack()
     button.configure(command = partial(destroy_rectangle_window, window, button, x, y, width, height))
 
