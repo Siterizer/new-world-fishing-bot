@@ -23,6 +23,16 @@ def on_closing():
     save_data()
     gv.root.destroy()
 
+def change_repair_afk_state(button):
+    if (dict['repairing']['afk'].get() == 1):
+        button.configure(text="NO")
+        button.configure(bg="red")
+        dict['repairing']['afk'] = IntVar(value=0)
+    else:
+        button.configure(text="YES ")
+        button.configure(bg="green")
+        dict['repairing']['afk'] = IntVar(value=1)
+
 def change_repair_kit_state(button):
     if (dict['repairing']['kit'].get() == 1):
         button.configure(text="NO")

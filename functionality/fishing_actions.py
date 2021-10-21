@@ -63,9 +63,10 @@ def repairing():
     debug("Arm fishing rod. Total time: {} s".format(arm_disarm_timeout))
     arm_disarm_fishing_rod(arm_disarm_timeout)
 
-    move_around = random_timeout(dict['repairing']['timeouts']['move_around'])
-    debug("Move to prevent AFK kick. Total time:  {} s".format(move_around))
-    move_left_right(move_around)
+    if dict['repairing']['afk'].get() == 1:
+        move_around = random_timeout(dict['repairing']['timeouts']['move_around'])
+        debug("Move to prevent AFK kick. Total time:  {} s".format(move_around))
+        move_left_right(move_around)
 
 def arm_disarm_fishing_rod(timeout):
     sleep(timeout)

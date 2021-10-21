@@ -8,8 +8,8 @@ fishing:
       min: 0.01
       max: 0.01
     notice:
-      min: 1.5
-      max: 2.0
+      min: 1.25
+      max: 1.26
     reeling:
       min: 0.7
       max: 1.7
@@ -21,6 +21,7 @@ fishing:
       max: 1.76
 repairing:
   kit: 1
+  afk: 1
   x: 850
   y: 655
   length: 25
