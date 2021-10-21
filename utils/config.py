@@ -36,6 +36,7 @@ dict = {
       }
     },
     'repairing':{
+      'kit': IntVar(value=config['repairing']['kit']),
       'x': IntVar(value=config['repairing']['x']),
       'y': IntVar(value=config['repairing']['y']),
       'length': IntVar(value=config['repairing']['length']),
@@ -125,6 +126,7 @@ def save_data():
       }
     },
     'repairing':{
+      'kit': dict["repairing"]['kit'].get(),
       'x': dict['repairing']['x'].get(),
       'y': dict['repairing']['y'].get(),
       'length': dict['repairing']['length'].get(),

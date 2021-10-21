@@ -2,6 +2,8 @@ from gui.repairing_column.components.enable import *
 from gui.repairing_column.components.every import *
 from gui.repairing_column.components.position import *
 from gui.repairing_column.components.show_button import *
+from gui.repairing_column.components.kit import *
+
 import utils.global_variables as gv
 from tkinter import Label, LabelFrame
 
@@ -17,3 +19,4 @@ def repairing_column():
     repairing_column_every(repairing_column)
     repairing_column_enable(repairing_column)
     repairing_column_show(repairing_column)
+    repairing_column_kit(repairing_column)

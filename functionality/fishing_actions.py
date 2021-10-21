@@ -81,11 +81,13 @@ def open_close_inventory(timeout):
 
 def repair(timeout):
     sleep(timeout)
-    press_key('r')
+    key = 'r' if dict['repairing']['kit'].get() == 0 else 't'
+    debug("Repairing with key: {}".format(key))
+    press_key(key)
     sleep(0.1)
     click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
     sleep(0.1)
-    release_key('r')
+    release_key(key)
     sleep(timeout)
 
 def confirm_repair(timeout):
