@@ -1,8 +1,8 @@
 fishing:
   x: 750
-  y: 110
+  y: 210
   width: 451
-  height: 948
+  height: 848
   timeouts:
     loop:
       min: 0.01
