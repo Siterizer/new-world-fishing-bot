@@ -27,11 +27,13 @@ width = int(NOTHING.shape[1] * scaleX)
 height = int(NOTHING.shape[1] * scaleY)
 dim = (width, height)
 NOTHING = cv.resize(NOTHING, dim, cv.INTER_LINEAR)
+NOTHING = cv.cvtColor(NOTHING, cv.COLOR_BGR2GRAY)
 NOTICE = cv.imread(FISH_NOTICED)
 width = int(NOTICE.shape[1] * scaleX)
 height = int(NOTICE.shape[1] * scaleY)
 dim = (width, height)
 NOTICE = cv.resize(NOTICE, dim, cv.INTER_LINEAR)
+NOTICE = cv.cvtColor(NOTICE, cv.COLOR_BGR2GRAY)
 REEL_COLOR = config_dict["colors"]["green"]
 WAIT_COLOR_BROWN = config_dict["colors"]["brown"]
 WAIT_COLOR_RED = config_dict["colors"]["red"]
@@ -40,12 +42,15 @@ COLOR_WAGES = 7
 
 def image_recognition_result(x, y, width, height):
     region = (x, y, x + width, y + height)
-    img = array(ImageGrab.grab(bbox=region))
-    img_cv = cv.cvtColor(img, cv.COLOR_RGB2BGR)
-    res = cv.matchTemplate(img_cv, NOTICE, eval("cv.TM_CCOEFF_NORMED"))
-    if (res >= 0.7).any():
+    img_foo = ImageGrab.grab(bbox=region)
+    # img_foo.save("scanned_image.png")
+    img = array(img_foo)
+    # img_color = cv.cvtColor(img, cv.COLOR_RGB2BGR)
+    img_bw = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+    res = cv.matchTemplate(img_bw, NOTICE, eval("cv.TM_CCOEFF_NORMED"))
+    if (res >= 0.65).any():
         return "1"
-    res = cv.matchTemplate(img_cv, NOTHING, eval("cv.TM_CCOEFF_NORMED"))
+    res = cv.matchTemplate(img_bw, NOTHING, eval("cv.TM_CCOEFF_NORMED"))
     if (res >= 0.7).any():
         return "0"
 
