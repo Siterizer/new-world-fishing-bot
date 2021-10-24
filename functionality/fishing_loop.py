@@ -24,7 +24,7 @@ def fishing_loop():
                     select_bait()
     if gv.continue_fishing:
         gv.root.after(
-            int(random_timeout(config_dict["fishing"]["timeouts"]["loop"]) * 1000),
+            int(random_timeout(config_dict["fishing"]["timeouts"]["loop"])),
             fishing_loop,
         )
 
@@ -54,10 +54,10 @@ def call_appropriate_fishing_action():
         reel_fish()
         return "2"
     elif result_from_model == "3":  # 3 - model matched the orange icon (wait x sec)
-        if gv.last_results.are_too_much_pauses():
-            info("Too much pauses, Reeling a fish!")
-            reel_fish()
-            return "3"
+        # if gv.last_results.are_too_much_pauses():
+        #     info("Too much pauses, Reeling a fish!")
+        #     reel_fish()
+        #     return "3"
         info("Orange color spotted, Pause fishing")
         pause()
         return "3"

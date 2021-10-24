@@ -1,27 +1,27 @@
 fishing:
-  x: 1420
-  y: 32
-  width: 301
-  height: 635
+  x: 1575
+  y: 500
+  width: 300
+  height: 500
   timeouts:
     loop:
-      min: 0.01
-      max: 0.01
+      min: 0
+      max: 100
     notice:
       min: 1.5
       max: 2.0
     reeling:
-      min: 0.7
-      max: 1.7
+      min: 0.4
+      max: 0.9
     pause:
-      min: 0.5
-      max: 1.5
+      min: 0
+      max: 0.1
     cast:
-      min: 0.5
-      max: 1.0
+      min: 0.1
+      max: 0.3
 repairing:
-  x: 1500
-  y: 699
+  x: 1600
+  y: 875
   length: 25
   every: 400
   enable: 1
@@ -42,12 +42,12 @@ repairing:
       min: 0.5
       max: 1.0
 bait:
-  bait_x: 1930
-  bait_y: 650
-  equip_button_x: 2200
-  equip_button_y: 1000
+  bait_x: 2000
+  bait_y: 600
+  equip_button_x: 2400
+  equip_button_y: 1100
   length: 25
-  enable: 0
+  enable: 1
   timeouts:
     select:
       min: 0.1
@@ -71,4 +71,4 @@ colors:
 resolution:
   x: 5120
   y: 2160
-log_lvl: INFO
+log_lvl: DEBUG
