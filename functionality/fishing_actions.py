@@ -1,4 +1,5 @@
 from utils.config import config_dict, random_timeout
+# from utils.utils import frange
 from time import sleep
 from wrappers.win32api_wrapper import (
     press_mouse_key,
@@ -8,6 +9,14 @@ from wrappers.win32api_wrapper import (
     click_mouse_with_coordinates,
 )
 from wrappers.logging_wrapper import debug
+
+
+# def sleep_wrapper(sleep_time):
+#     if sleep_time > 0.2:
+#         for _ in frange(0, sleep_time, 0.01):
+#             sleep(0.01)
+#             return
+#     sleep(sleep_time)
 
 
 def fish_notice():
@@ -74,9 +83,9 @@ def repairing():
     debug("Arm fishing rod. Total time: {} s".format(arm_disarm_timeout))
     arm_disarm_fishing_rod(arm_disarm_timeout)
 
-    move_around = random_timeout(config_dict["repairing"]["timeouts"]["move_around"])
-    debug("Move to prevent AFK kick. Total time:  {} s".format(move_around))
-    move_left_right(move_around)
+    # move_around = random_timeout(config_dict["repairing"]["timeouts"]["move_around"])
+    # debug("Move to prevent AFK kick. Total time:  {} s".format(move_around))
+    # move_left_right(move_around)
 
 
 def arm_disarm_fishing_rod(timeout):
@@ -96,9 +105,9 @@ def open_close_inventory(timeout):
 def repair(timeout):
     sleep(timeout)
     press_key("r")
-    sleep(0.1)
+    sleep(0.2)
     click_mouse_with_coordinates(config_dict["repairing"]["x"].get(), config_dict["repairing"]["y"].get())
-    sleep(0.1)
+    sleep(0.2)
     release_key("r")
     sleep(timeout)
 
@@ -106,7 +115,7 @@ def repair(timeout):
 def confirm_repair(timeout):
     sleep(timeout)
     press_key("e")
-    sleep(0.1)
+    sleep(0.2)
     release_key("e")
     sleep(timeout)
 
