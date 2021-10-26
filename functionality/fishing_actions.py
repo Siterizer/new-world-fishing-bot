@@ -34,8 +34,8 @@ def cast():
     press_mouse_key()
     sleep(cast_timeout)
     release_mouse_key()
-    debug("Pause for: 5 s")
-    sleep(5)
+    debug("Pause for: 4 s")
+    sleep(4)
     debug("press b")
     press_key('b')
 
