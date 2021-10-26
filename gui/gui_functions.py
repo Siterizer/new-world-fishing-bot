@@ -54,8 +54,6 @@ def stop_fishing_button_pressed(button):
         return
     info("Stop button pressed")
     gv.continue_fishing = False
-    event = threading.Event()
-    event.set()
     button.configure(text="Start fishing")
     button.configure(command=partial(start_fishing_button_pressed, button))
 
@@ -68,14 +66,5 @@ def start_fishing_button_pressed(button):
     gv.continue_fishing = True
     button.configure(text="Stop fishing")
     button.configure(command=partial(stop_fishing_button_pressed, button))
-    #threading.Thread(target=fake_loop).start()
     event = threading.Event()
     threading.Thread(target=fishing_loop, args=(event,)).start()
-
-def fake_loop():
-    if (not gv.continue_fishing):
-        info('stopping loop')
-        return
-    info('starting new loop')
-    if (gv.continue_fishing):
-        gv.root.after(int(random_timeout(dict['fishing']['timeouts']['loop'])*1000), fake_loop)

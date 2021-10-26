@@ -17,6 +17,7 @@ FISH_NOTICED = path.join(ROOT_DIR, 'resources\\fish_noticed.jpg')
 ICON_PATH = path.join(ROOT_DIR, 'resources\\icon.ico')
 
 continue_fishing = False
+loop_count = 0
 last_repair_time = int(time())
 last_results = LastResults()
 root = Tk()

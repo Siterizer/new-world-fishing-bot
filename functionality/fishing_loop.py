@@ -10,13 +10,16 @@ from time import time
 from functools import partial
 
 def fishing_loop(event):
+    if(gv.loop_count == 500):
+        threading.Thread(target=fishing_loop, args=(event,)).start()
+        gv.loop_count = 0
+        return
+
     if (not gv.continue_fishing):
         info('stopping loop')
         return
-    info('starting new loop')
-    # start a thread to listen for hotkey 0 to pause/resume the bot
-    keyboard.add_hotkey('0', stop_loop)
-    keyboard.add_hotkey('9', partial(start_loop, event))
+    gv.loop_count+=1
+    info('starting new loop ' + str(gv.loop_count))
     gv.last_results.add(call_appropriate_fishing_action(event))
     if(gv.last_results.is_full_of('0')):
         if(dict['repairing']['enable'].get() == 1):
@@ -32,17 +35,6 @@ def fishing_loop(event):
     if (gv.continue_fishing):
         gv.root.after(int(random_timeout(dict['fishing']['timeouts']['loop'])*1000), fishing_loop(event))
 
-def stop_loop():
-    if (gv.continue_fishing):
-        info("Hotkey pressed stopping loop")
-        gv.continue_fishing = False
-
-
-def start_loop(event):
-    if (not gv.continue_fishing):
-        info("Hotkey pressed starting loop")
-        gv.continue_fishing = True
-        fishing_loop(event)
 
 def call_appropriate_fishing_action(event):
     result_from_model = image_recognition_result(dict['fishing']['x'].get(), dict['fishing']['y'].get(),

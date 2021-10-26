@@ -115,7 +115,7 @@ def confirm_repair(event, timeout):
     if (gv.continue_fishing):
         event.wait(timeout)
         press_key('e')
-        rest(0.1)
+        event.wait(0.1)
         release_key('e')
     if (gv.continue_fishing):
         event.wait(timeout)
