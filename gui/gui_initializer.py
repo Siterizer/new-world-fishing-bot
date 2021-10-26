@@ -1,5 +1,5 @@
 from functools import partial
-from gui.gui_functions import start_fishing, on_closing
+from gui.gui_functions import start_fishing_button_pressed, on_closing
 from gui.fishing_column.fishing_column import fishing_column
 from gui.repairing_column.repairing_column import repairing_column
 from gui.bait_column.bait_column import bait_column
@@ -13,3 +13,4 @@ def gui_init():
     repairing_column()
     bait_column()
     start_fishing_button()
+

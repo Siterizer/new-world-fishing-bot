@@ -1,133 +1,168 @@
 from utils.config import dict, random_timeout
 from time import sleep
 from wrappers.win32api_wrapper import *
-from wrappers.logging_wrapper import debug
+from wrappers.logging_wrapper import info, debug
+import utils.global_variables as gv
+import math
 
-def fish_notice():
+def fish_notice(event):
     notice_timeout = random_timeout(dict['fishing']['timeouts']['notice'])
     debug("Press mouse key for: {} s".format(notice_timeout))
-    press_mouse_key()
-    sleep(notice_timeout)
-    release_mouse_key()
+    if (gv.continue_fishing):
+        press_mouse_key()
+        event.wait(notice_timeout)
+        release_mouse_key()
 
-def reel_fish():
+def reel_fish(event):
     reel_timeout = random_timeout(dict['fishing']['timeouts']['reeling'])
     debug("Press mouse key for: {} s".format(reel_timeout))
-    press_mouse_key()
-    sleep(reel_timeout)
-    release_mouse_key()
+    if (gv.continue_fishing):
+        press_mouse_key()
+        event.wait(reel_timeout)
+        release_mouse_key()
 
-def pause():
+def pause(event):
     pause_timeout = random_timeout(dict['fishing']['timeouts']['pause'])
     debug("Pause for: {} s".format(pause_timeout))
-    sleep(pause_timeout)
+    if (gv.continue_fishing):
+        event.wait(pause_timeout)
 
-def cast():
+def cast(event):
     cast_timeout = random_timeout(dict['fishing']['timeouts']['cast'])
     debug("Pause for: 6 s")
-    sleep(6)
-    debug("release b")
-    release_key('b')
-    debug("Pause for: 1 s")
-    sleep(1)
-    debug("Pause for: {} s".format(cast_timeout))
-    press_mouse_key()
-    sleep(cast_timeout)
-    release_mouse_key()
-    debug("Pause for: 5 s")
-    sleep(5)
-    debug("press b")
-    press_key('b')
+    if (gv.continue_fishing):
+        event.wait(6)
 
-def repairing():
+    if (gv.continue_fishing):
+        debug("release b")
+        release_key('b')
+
+    if (gv.continue_fishing):
+        debug("Pause for: 1 s")
+        event.wait(1)
+
+    if (gv.continue_fishing):
+        debug("Pause for: {} s".format(cast_timeout))
+        press_mouse_key()
+        event.wait(cast_timeout)
+        release_mouse_key()
+
+    if (gv.continue_fishing):
+        debug("Pause for: 5 s")
+        event.wait(5)
+
+    if (gv.continue_fishing):
+        debug("press b")
+        press_key('b')
+
+def repairing(event):
     release_key('b')
     arm_disarm_timeout = random_timeout(dict['repairing']['timeouts']['arm_disarm'])
     debug("Disarm fishing rod. Total time: {} s".format(arm_disarm_timeout))
-    arm_disarm_fishing_rod(arm_disarm_timeout)
+    arm_disarm_fishing_rod(event, arm_disarm_timeout)
 
     inventory_timeout = random_timeout(dict['repairing']['timeouts']['inventory'])
     debug("Open inventory. Total time: {} s".format(inventory_timeout))
-    open_close_inventory(inventory_timeout)
+    open_close_inventory(event, inventory_timeout)
 
     repair_timeout = random_timeout(dict['repairing']['timeouts']['repair'])
     debug("Repair fishing rod. Total time: {} s".format(repair_timeout))
-    repair(repair_timeout)
+    repair(event, repair_timeout)
 
     confirm_timeout = random_timeout(dict['repairing']['timeouts']['confirm'])
     debug("Confirm repair. Total time: {} s".format(confirm_timeout))
-    confirm_repair(confirm_timeout)
+    confirm_repair(event, confirm_timeout)
 
     debug("Close inventory. Total time: {} s".format(inventory_timeout))
-    open_close_inventory(inventory_timeout)
+    open_close_inventory(event, inventory_timeout)
 
     debug("Arm fishing rod. Total time: {} s".format(arm_disarm_timeout))
-    arm_disarm_fishing_rod(arm_disarm_timeout)
+    arm_disarm_fishing_rod(event, arm_disarm_timeout)
 
     move_around = random_timeout(dict['repairing']['timeouts']['move_around'])
     debug("Move to prevent AFK kick. Total time:  {} s".format(move_around))
-    move_left_right(move_around)
+    move_left_right(event, move_around)
 
-def arm_disarm_fishing_rod(timeout):
-    sleep(timeout)
-    press_key('F3')
-    release_key('F3')
-    sleep(timeout)
+def arm_disarm_fishing_rod(event, timeout):
+    if (gv.continue_fishing):
+        event.wait(timeout)
+        press_key('F3')
+        release_key('F3')
 
-def open_close_inventory(timeout):
-    sleep(timeout)
-    press_key('tab')
-    release_key('tab')
-    sleep(timeout)
+    if (gv.continue_fishing):
+        event.wait(timeout)
 
-def repair(timeout):
-    sleep(timeout)
-    press_key('r')
-    sleep(0.1)
-    click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
-    sleep(0.1)
-    release_key('r')
-    sleep(timeout)
+def open_close_inventory(event, timeout):
+    if (gv.continue_fishing):
+        event.wait(timeout)
+        press_key('tab')
+        release_key('tab')
+    if (gv.continue_fishing):
+        event.wait(timeout)
 
-def confirm_repair(timeout):
-    sleep(timeout)
-    press_key('e')
-    sleep(0.1)
-    release_key('e')
-    sleep(timeout)
+def repair(event, timeout):
+    if (gv.continue_fishing):
+        event.wait(timeout)
+        press_key('r')
+        event.wait(0.1)
+        click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
+        event.wait(0.1)
+        release_key('r')
+    if (gv.continue_fishing):
+        event.wait(timeout)
 
-def move_left_right(timeout):
-    press_key('a')
-    sleep(timeout)
-    release_key('a')
-    sleep(1.0)
-    press_key('d')
-    sleep(timeout)
-    release_key('d')
+def confirm_repair(event, timeout):
+    if (gv.continue_fishing):
+        event.wait(timeout)
+        press_key('e')
+        rest(0.1)
+        release_key('e')
+    if (gv.continue_fishing):
+        event.wait(timeout)
 
-def select_bait():
-    release_key('b')
+def move_left_right(event, timeout):
+    if (gv.continue_fishing):
+        press_key('a')
+        event.wait(timeout)
+        release_key('a')
+    if (gv.continue_fishing):
+        event.wait(1.0)
+        press_key('d')
+        event.wait(timeout)
+        release_key('d')
 
-    debug("Bait selection.")
-    press_key('r')
-    sleep(0.1)
-    release_key('r')
+def select_bait(event):
+    if (gv.continue_fishing):
+        release_key('b')
+        debug("Bait selection.")
+        press_key('r')
+        event.wait(0.1)
+        release_key('r')
 
-    bait_select_timeout = random_timeout(dict['bait']['timeouts']['select'])
-    debug("Bait select. Total time: {} s".format(bait_select_timeout))
-    press_on_bait(bait_select_timeout)
+    if (gv.continue_fishing):
+        bait_select_timeout = random_timeout(dict['bait']['timeouts']['select'])
+        debug("Bait select. Total time: {} s".format(bait_select_timeout))
+        press_on_bait(event, bait_select_timeout)
 
-    confirm_timeout = random_timeout(dict['bait']['timeouts']['confirm'])
-    debug("Confirm bait selection. Total time: {} s".format(confirm_timeout))
-    press_equip_bait(confirm_timeout)
+    if (gv.continue_fishing):
+        confirm_timeout = random_timeout(dict['bait']['timeouts']['confirm'])
+        debug("Confirm bait selection. Total time: {} s".format(confirm_timeout))
+        press_equip_bait(event, confirm_timeout)
 
-def press_on_bait(timeout):
-    sleep(timeout)
-    click_mouse_with_coordinates(dict['bait']['bait_x'].get(), dict['bait']['bait_y'].get())
-    sleep(timeout)
+def press_on_bait(event, timeout):
 
-def press_equip_bait(timeout):
-    sleep(timeout)
-    click_mouse_with_coordinates(dict['bait']['equip_button_x'].get(), dict['bait']['equip_button_y'].get())
-    sleep(timeout)
+    if (gv.continue_fishing):
+        event.wait(timeout)
+        click_mouse_with_coordinates(dict['bait']['bait_x'].get(), dict['bait']['bait_y'].get())
+    if (gv.continue_fishing):
+        event.wait(timeout)
+
+def press_equip_bait(event, timeout):
+    if (gv.continue_fishing):
+        event.wait(timeout)
+        click_mouse_with_coordinates(dict['bait']['equip_button_x'].get(), dict['bait']['equip_button_y'].get())
+    if (gv.continue_fishing):
+        event.wait(timeout)
     # waiting for animation to finish
-    sleep(1)
+    if (gv.continue_fishing):
+        event.wait(1)
