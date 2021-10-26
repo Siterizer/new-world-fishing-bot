@@ -2,8 +2,10 @@ from tkinter import Toplevel, Canvas, IntVar
 from functools import partial
 from utils.config import dict, save_data
 from functionality.fishing_loop import fishing_loop
+from wrappers.logging_wrapper import info, debug
 import utils.global_variables as gv
-
+import keyboard
+import threading
 
 def popup_rectangle_window(button, x, y, width, height):
     window = Toplevel()
@@ -46,14 +48,22 @@ def change_bait_button_state(button):
 def changeFishingState(button):
     gv.continue_fishing = not gv.continue_fishing
     if(gv.continue_fishing):
+        info("Start fishing")
         button.configure(text = "Stop fishing")
         button.configure(command = partial(changeFishingState, button))
         return
+    info("Stop fishing")
+    threading.Thread(target=fishing_loop).start()
     button.configure(text = "Start fishing")
     button.configure(command = partial(start_fishing, button))
 
 def start_fishing(button):
     changeFishingState(button)
-    fishing_loop()
+    threading.Thread(target=partial(listen_for_hotkey, button)).start()
 
 
+def listen_for_hotkey(button):
+    keyboard.wait("0")
+    info("Pressed 0")
+    changeFishingState(button)
+    listen_for_hotkey(button)

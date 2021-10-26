@@ -1,15 +1,17 @@
 import utils.global_variables as gv
+import keyboard
 from functionality.fishing_actions import *
 from functionality.image_recognition import image_recognition_result
 from wrappers.logging_wrapper import info, debug
 from utils.config import dict, random_timeout
 from time import time
 
-
 def fishing_loop():
-    if (not gv.continue_fishing):
+    if (not gv.continue_fishing and not gv.already_running):
+        gv.already_running = False
         return
     debug('starting new loop')
+    gv.already_running = True
     gv.last_results.add(call_appropriate_fishing_action())
     if(gv.last_results.is_full_of('0')):
         if(dict['repairing']['enable'].get() == 1):
