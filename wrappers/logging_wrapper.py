@@ -1,5 +1,5 @@
 import logging
-from utils.config import config_dict
+
 
 log_level = {
     "DEBUG": logging.DEBUG,
@@ -7,7 +7,7 @@ log_level = {
 }
 
 logging.basicConfig(
-    level=log_level.get(config_dict["log_lvl"]),
+    level="INFO",
     format="[%(levelname)s] %(message)s",
     handlers=[logging.StreamHandler()],
 )

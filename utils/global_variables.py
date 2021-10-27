@@ -1,8 +1,5 @@
-from utils.LastResults import LastResults
-from os import path
 import sys
-from time import time
-from tkinter import Tk
+from os import path
 
 
 def rootPath():
@@ -13,12 +10,7 @@ def rootPath():
 
 
 ROOT_DIR = rootPath()
-CONFIG_PATH = path.join(ROOT_DIR, "resources\config.yml")
+CONFIG_PATH = path.join(ROOT_DIR, "resources\\config.yml")
 WAITING_FOR_FISH = path.join(ROOT_DIR, "resources\\waiting_for_fish.jpg")
 FISH_NOTICED = path.join(ROOT_DIR, "resources\\fish_noticed.png")
 ICON_PATH = path.join(ROOT_DIR, "resources\\icon.ico")
-
-continue_fishing = False
-last_repair_time = int(time())
-last_results = LastResults()
-root = Tk()

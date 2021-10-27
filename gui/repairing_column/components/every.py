@@ -1,8 +1,7 @@
 from tkinter import Label, LabelFrame, Entry
-from utils.config import config_dict
 
 
-def repairing_column_every(repairing_column):
+def repairing_column_every(repairing_column, config):
     repairing_column_every_container = LabelFrame(repairing_column)
     repairing_column_every_container.grid(row=3, column=0, pady=(5, 5))
     repairing_column_every_text_left = Label(repairing_column_every_container, text="Repair every:")
@@ -10,7 +9,7 @@ def repairing_column_every(repairing_column):
     repairing_column_every_entry = Entry(
         repairing_column_every_container,
         width=4,
-        textvariable=config_dict["repairing"]["every"],
+        textvariable=config["repairing"]["every"],
     )
     repairing_column_every_entry.grid(row=0, column=1, padx=(41, 0))
     repairing_column_every_text_right = Label(repairing_column_every_container, text="s")

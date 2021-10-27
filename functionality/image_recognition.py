@@ -1,10 +1,12 @@
-from utils.config import config_dict
-from numpy import array
-import cv2 as cv
-from PIL import ImageGrab
-from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
-from os import path
+import concurrent.futures
 import configparser
+import functools
+from os import path
+
+import cv2 as cv
+from numpy import array
+from PIL import ImageGrab
+from utils.global_variables import FISH_NOTICED, WAITING_FOR_FISH
 
 # Baseline Resolution at which the templates were recorded
 base_width = 1920
@@ -34,36 +36,48 @@ height = int(NOTICE.shape[1] * scaleY)
 dim = (width, height)
 NOTICE = cv.resize(NOTICE, dim, cv.INTER_LINEAR)
 NOTICE = cv.cvtColor(NOTICE, cv.COLOR_BGR2GRAY)
-REEL_COLOR = config_dict["colors"]["green"]
-WAIT_COLOR_BROWN = config_dict["colors"]["brown"]
-WAIT_COLOR_RED = config_dict["colors"]["red"]
 COLOR_WAGES = 7
 
 
-def image_recognition_result(x, y, width, height):
-    region = (x, y, x + width, y + height)
-    img_foo = ImageGrab.grab(bbox=region)
-    # img_foo.save("scanned_image.png")
-    img = array(img_foo)
-    # img_color = cv.cvtColor(img, cv.COLOR_RGB2BGR)
-    img_bw = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
-    res = cv.matchTemplate(img_bw, NOTICE, eval("cv.TM_CCOEFF_NORMED"))
-    if (res >= 0.65).any():
-        return "1"
-    res = cv.matchTemplate(img_bw, NOTHING, eval("cv.TM_CCOEFF_NORMED"))
-    if (res >= 0.7).any():
-        return "0"
+async def image_recognition_result(ctx, x, y, width, height):
+    REEL_COLOR = ctx["config"]["colors"]["green"]
+    WAIT_COLOR_BROWN = ctx["config"]["colors"]["brown"]
+    WAIT_COLOR_RED = ctx["config"]["colors"]["red"]
 
-    if pixel_match(img, REEL_COLOR):
+    region = (x, y, x + width, y + height)
+    img = None
+    with concurrent.futures.ProcessPoolExecutor() as pool:  # Wrap PIL garbage
+        img_foo = await ctx["loop"].run_in_executor(
+            pool, functools.partial(ImageGrab.grab, bbox=region)
+        )
+        await ctx["loop"].run_in_executor(pool, img_foo.save, "scanned_image.png")
+        img = array(img_foo)
+    if len(img) <= 0:
+        raise Exception("Error, image could not be captured?")
+
+    with concurrent.futures.ProcessPoolExecutor() as pool:  # Wrap OpenCV garbage
+        img_bw = await ctx["loop"].run_in_executor(pool, cv.cvtColor, img, cv.COLOR_RGB2GRAY)
+        res = await ctx["loop"].run_in_executor(
+            pool, cv.matchTemplate, img_bw, NOTICE, cv.TM_CCOEFF_NORMED
+        )
+        if (res >= 0.65).any():
+            return "1"
+        res = await ctx["loop"].run_in_executor(
+            pool, cv.matchTemplate, img_bw, NOTHING, cv.TM_CCOEFF_NORMED
+        )
+        if (res >= 0.7).any():
+            return "0"
+
+    if await pixel_match(ctx, img, REEL_COLOR):
         return "2"
-    if pixel_match(img, WAIT_COLOR_BROWN):
+    if await pixel_match(ctx, img, WAIT_COLOR_BROWN):
         return "3"
-    if pixel_match(img, WAIT_COLOR_RED):
+    if await pixel_match(ctx, img, WAIT_COLOR_RED):
         return "4"
     return "5"
 
 
-def pixel_match(img, matcher):
+async def pixel_match(ctx, img, matcher):
     lower, upper = (
         [matcher[0] - COLOR_WAGES, matcher[1] - COLOR_WAGES, matcher[2] - COLOR_WAGES],
         [matcher[0] + COLOR_WAGES, matcher[1] + COLOR_WAGES, matcher[2] + COLOR_WAGES],
@@ -71,7 +85,10 @@ def pixel_match(img, matcher):
     color_lower = array(lower)
     color_upper = array(upper)
 
-    mask = cv.inRange(img, color_lower, color_upper)
-    if mask.any():
-        return True
-    return False
+    with concurrent.futures.ProcessPoolExecutor() as pool:  # Wrap OpenCV garbage
+        mask = await ctx["loop"].run_in_executor(
+            pool, cv.inRange, img, color_lower, color_upper
+        )
+        if mask.any():
+            return True
+        return False

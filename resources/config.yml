@@ -47,7 +47,7 @@ bait:
   equip_button_x: 2400
   equip_button_y: 1100
   length: 25
-  enable: 1
+  enable: 0
   timeouts:
     select:
       min: 0.1
