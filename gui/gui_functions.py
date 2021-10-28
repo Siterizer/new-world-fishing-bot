@@ -31,20 +31,24 @@ def change_repair_button_state(button):
     if (dict['repairing']['enable'].get() == 1):
         button.configure(text="OFF")
         button.configure(bg="red")
+        button.configure(fg="white")
         dict['repairing']['enable'] = IntVar(value=0)
     else:
         button.configure(text="ON ")
         button.configure(bg="green")
+        button.configure(fg="white")
         dict['repairing']['enable'] = IntVar(value=1)
 
 def change_bait_button_state(button):
     if (dict['bait']['enable'].get() == 1):
         button.configure(text="OFF")
         button.configure(bg="red")
+        button.configure(fg="white")
         dict['bait']['enable'] = IntVar(value=0)
     else:
         button.configure(text="ON ")
         button.configure(bg="green")
+        button.configure(fg="white")
         dict['bait']['enable'] = IntVar(value=1)
 
 def stop_fishing_button_pressed(button):
@@ -54,6 +58,7 @@ def stop_fishing_button_pressed(button):
         return
     info("Stop button pressed")
     gv.continue_fishing = False
+    button.configure(bg="green")
     button.configure(text="Start fishing")
     button.configure(command=partial(start_fishing_button_pressed, button))
 
@@ -65,6 +70,7 @@ def start_fishing_button_pressed(button):
     info("Start button pressed")
     gv.continue_fishing = True
     button.configure(text="Stop fishing")
+    button.configure(bg="red")
     button.configure(command=partial(stop_fishing_button_pressed, button))
     event = threading.Event()
     threading.Thread(target=fishing_loop, args=(event,)).start()

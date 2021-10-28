@@ -29,9 +29,10 @@ def pause(event):
 
 def cast(event):
     cast_timeout = random_timeout(dict['fishing']['timeouts']['cast'])
-    debug("Pause for: 6 s")
+
+    debug("Pause for: 3 s")
     if (gv.continue_fishing):
-        event.wait(6)
+        event.wait(3)
 
     if (gv.continue_fishing):
         debug("release b")
