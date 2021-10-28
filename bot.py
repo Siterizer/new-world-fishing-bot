@@ -47,7 +47,7 @@ class FishingBoi(tk.Tk):
         window.resizable(False, False)
         window.attributes("-fullscreen", True)
         window.wm_attributes("-transparentcolor", window["bg"])
-        window.attributes('-topmost',True)
+        window.attributes("-topmost", True)
         canvas = tk.Canvas(window, width=10000, height=10000)
         canvas.create_rectangle(
             x.get(),
