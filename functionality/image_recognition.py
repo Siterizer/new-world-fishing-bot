@@ -36,7 +36,7 @@ height = int(NOTICE.shape[1] * scaleY)
 dim = (width, height)
 NOTICE = cv.resize(NOTICE, dim, cv.INTER_LINEAR)
 NOTICE = cv.cvtColor(NOTICE, cv.COLOR_BGR2GRAY)
-COLOR_WAGES = 7
+COLOR_WAGES = 4
 
 
 async def image_recognition_result(ctx, x, y, width, height):
