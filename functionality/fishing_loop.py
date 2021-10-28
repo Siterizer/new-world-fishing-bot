@@ -31,7 +31,6 @@ async def fishing_loop(config):
                     if ctx["config"]["bait"]["enable"]:
                         info("Selecting bait")
                         await select_bait(ctx)
-    return
 
 
 async def call_appropriate_fishing_action(ctx, last_results):
