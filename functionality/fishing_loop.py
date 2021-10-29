@@ -21,14 +21,14 @@ async def fishing_loop(config):
         debug("starting new loop")
         last_results.add(await call_appropriate_fishing_action(ctx, last_results))
         if last_results.is_full_of("0"):
-            if ctx["config"]["repairing"]["enable"] == 1:
-                should_repair_in = -1 * (int(time()) - last_repair_time.get() - ctx["config"]["repairing"]["every"])
+            if ctx["config"]["repairing"]["enable"].get() == 1:
+                should_repair_in = -1 * (int(time()) - last_repair_time - ctx["config"]["repairing"]["every"].get())
                 debug("Repair in: " + str(should_repair_in))
                 if should_repair_in < 0:
                     last_repair_time = int(time())
                     info("Repairing")
                     await repairing(ctx)
-                    if ctx["config"]["bait"]["enable"]:
+                    if ctx["config"]["bait"]["enable"].get() == 1:
                         info("Selecting bait")
                         await select_bait(ctx)
 

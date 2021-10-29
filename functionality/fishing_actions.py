@@ -1,6 +1,5 @@
 from utils.config import random_timeout
 
-# from utils.utils import frange
 from asyncio import sleep
 from wrappers.win32api_wrapper import (
     press_mouse_key,
@@ -10,14 +9,6 @@ from wrappers.win32api_wrapper import (
     click_mouse_with_coordinates,
 )
 from wrappers.logging_wrapper import debug
-
-
-# def sleep_wrapper(sleep_time):
-#     if sleep_time > 0.2:
-#         for _ in frange(0, sleep_time, 0.01):
-#             sleep(0.01)
-#             return
-#     sleep(sleep_time)
 
 
 async def fish_notice(ctx):
@@ -44,13 +35,13 @@ async def pause(ctx):
 
 async def cast(ctx):
     cast_timeout = await random_timeout(ctx["config"]["fishing"]["timeouts"]["cast"])
-    debug("Pause for: 6 s")
+    debug("Pause for: 6 s (skipping animation)")
     await sleep(6)
     debug("release b")
     await release_key(ctx, "b")
     debug("Pause for: 1 s")
     await sleep(1)
-    debug(f"Pause for: {cast_timeout} s")
+    debug(f"Cast for: {cast_timeout} s")
     await press_mouse_key(ctx)
     await sleep(cast_timeout)
     await release_mouse_key(ctx)
@@ -107,7 +98,8 @@ async def repair(ctx, timeout):
     await sleep(timeout)
     await press_key(ctx, "r")
     await sleep(0.2)
-    await click_mouse_with_coordinates(ctx, ctx["config"]["repairing"]["x"], ctx["config"]["repairing"]["y"])
+    await click_mouse_with_coordinates(ctx, ctx["config"]["repairing"]["x"].get(),
+                                            ctx["config"]["repairing"]["y"].get())
     await sleep(0.2)
     await release_key(ctx, "r")
     await sleep(timeout)
@@ -150,14 +142,14 @@ async def select_bait(ctx):
 
 async def press_on_bait(ctx, timeout):
     await sleep(timeout)
-    await click_mouse_with_coordinates(ctx, ctx["config"]["bait"]["bait_x"], ctx["config"]["bait"]["bait_y"])
+    await click_mouse_with_coordinates(ctx, ctx["config"]["bait"]["bait_x"].get(), ctx["config"]["bait"]["bait_y"].get())
     await sleep(timeout)
 
 
 async def press_equip_bait(ctx, timeout):
     await sleep(timeout)
     await click_mouse_with_coordinates(
-        ctx, ctx["config"]["bait"]["equip_button_x"], ctx["config"]["bait"]["equip_button_y"]
+        ctx, ctx["config"]["bait"]["equip_button_x"].get(), ctx["config"]["bait"]["equip_button_y"].get()
     )
     await sleep(timeout)
     # waiting for animation to finish

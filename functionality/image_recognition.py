@@ -6,38 +6,10 @@ from os import path
 import cv2 as cv
 from numpy import array
 from PIL import ImageGrab
-from utils.global_variables import FISH_NOTICED, WAITING_FOR_FISH
+from utils.global_variables import get_image_recognition_images, COLOR_WAGES
 
-# Baseline Resolution at which the templates were recorded
-base_width = 1920
-base_height = 1080
-# Get Game Resolution from user_preload_settings.cfg
-nw_config_path = path.expandvars(r"%APPDATA%\AGS\New World\user_preload_settings.cfg")
-if path.isfile(nw_config_path):
-    config = configparser.ConfigParser(allow_no_value=True)
-    with open(nw_config_path, "r") as f:
-        config_string = "[dummy_section]\n" + f.read()
-    config.read_string(config_string)
-    scaleX = int(config["dummy_section"]["r_Width"]) / base_width
-    scaleY = int(config["dummy_section"]["r_Height"]) / base_height
-else:
-    scaleX = 1
-    scaleY = 1
 
-NOTHING = cv.imread(WAITING_FOR_FISH)
-width = int(NOTHING.shape[1] * scaleX)
-height = int(NOTHING.shape[1] * scaleY)
-dim = (width, height)
-NOTHING = cv.resize(NOTHING, dim, cv.INTER_LINEAR)
-NOTHING = cv.cvtColor(NOTHING, cv.COLOR_BGR2GRAY)
-NOTICE = cv.imread(FISH_NOTICED)
-width = int(NOTICE.shape[1] * scaleX)
-height = int(NOTICE.shape[1] * scaleY)
-dim = (width, height)
-NOTICE = cv.resize(NOTICE, dim, cv.INTER_LINEAR)
-NOTICE = cv.cvtColor(NOTICE, cv.COLOR_BGR2GRAY)
-COLOR_WAGES = 4
-
+NOTICE, NOTHING = get_image_recognition_images()
 
 async def image_recognition_result(ctx, x, y, width, height):
     REEL_COLOR = ctx["config"]["colors"]["green"]
@@ -70,7 +42,6 @@ async def image_recognition_result(ctx, x, y, width, height):
         )
         if (res >= 0.7).any():
             return "0"
-
     if await pixel_match(img, REEL_COLOR):
         return "2"
     if await pixel_match(img, WAIT_COLOR_BROWN):

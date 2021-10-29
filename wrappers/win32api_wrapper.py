@@ -8,11 +8,11 @@ import win32con
 async def click_mouse_with_coordinates(ctx, x, y):
     with concurrent.futures.ThreadPoolExecutor() as pool:
         await ctx["loop"].run_in_executor(pool, win32api.SetCursorPos, (x, y))
-        await sleep(0.02)
+        await sleep(0.1)
         await ctx["loop"].run_in_executor(
             pool, win32api.mouse_event, win32con.MOUSEEVENTF_LEFTDOWN, 0, 0
         )
-        await sleep(0.05)
+        await sleep(0.1)
         await ctx["loop"].run_in_executor(
             pool, win32api.mouse_event, win32con.MOUSEEVENTF_LEFTUP, 0, 0
         )
