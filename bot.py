@@ -72,29 +72,36 @@ class FishingBoi(tk.Tk):
         if self.config["repairing"]["enable"].get() == 1:
             button.configure(text="OFF")
             button.configure(bg="red")
+            button.configure(fg="white")
             self.config["repairing"]["enable"] = tk.IntVar(value=0)
         else:
             button.configure(text="ON ")
             button.configure(bg="green")
+            button.configure(fg="white")
             self.config["repairing"]["enable"] = tk.IntVar(value=1)
 
     def change_bait_button_state(self, button):
         if self.config["bait"]["enable"].get() == 1:
             button.configure(text="OFF")
             button.configure(bg="red")
+            button.configure(fg="white")
             self.config["bait"]["enable"] = tk.IntVar(value=0)
         else:
             button.configure(text="ON ")
             button.configure(bg="green")
+            button.configure(fg="white")
             self.config["bait"]["enable"] = tk.IntVar(value=1)
 
     def changeFishingState(self, button):
         self.continue_fishing = not self.continue_fishing
         if self.continue_fishing:
             button.configure(text="Stop fishing")
+            button.configure(bg="red")
             button.configure(command=partial(self.changeFishingState, button))
             return
         button.configure(text="Start fishing")
+        button.configure(fg="white")
+        button.configure(bg="green")
 
         try:
             task = [task for task in asyncio.all_tasks(self.asyncio_event_loop) if task.get_name() == "fishing_loop"]
