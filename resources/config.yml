@@ -50,11 +50,11 @@ bait:
   enable: 0
   timeouts:
     select:
-      min: 0.1
-      max: 1
+      min: 0.9
+      max: 1.4
     confirm:
-      min: 0.1
-      max: 1
+      min: 0.9
+      max: 1.4
 colors:
   green:
     r: 4

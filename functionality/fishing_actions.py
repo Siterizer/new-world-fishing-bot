@@ -1,133 +1,156 @@
-from utils.config import dict, random_timeout
-from time import sleep
-from wrappers.win32api_wrapper import *
+from utils.config import random_timeout
+
+from asyncio import sleep
+from wrappers.win32api_wrapper import (
+    press_mouse_key,
+    release_mouse_key,
+    release_key,
+    press_key,
+    click_mouse_with_coordinates,
+)
 from wrappers.logging_wrapper import debug
 
-def fish_notice():
-    notice_timeout = random_timeout(dict['fishing']['timeouts']['notice'])
-    debug("Press mouse key for: {} s".format(notice_timeout))
-    press_mouse_key()
-    sleep(notice_timeout)
-    release_mouse_key()
 
-def reel_fish():
-    reel_timeout = random_timeout(dict['fishing']['timeouts']['reeling'])
-    debug("Press mouse key for: {} s".format(reel_timeout))
-    press_mouse_key()
-    sleep(reel_timeout)
-    release_mouse_key()
+async def fish_notice(ctx):
+    notice_timeout = await random_timeout(ctx["config"]["fishing"]["timeouts"]["notice"])
+    debug(f"Press mouse key for: {notice_timeout} s")
+    await press_mouse_key(ctx)
+    await sleep(notice_timeout)
+    await release_mouse_key(ctx)
 
-def pause():
-    pause_timeout = random_timeout(dict['fishing']['timeouts']['pause'])
-    debug("Pause for: {} s".format(pause_timeout))
-    sleep(pause_timeout)
 
-def cast():
-    cast_timeout = random_timeout(dict['fishing']['timeouts']['cast'])
-    debug("Pause for: 6 s")
-    sleep(6)
+async def reel_fish(ctx):
+    reel_timeout = await random_timeout(ctx["config"]["fishing"]["timeouts"]["reeling"])
+    debug(f"Press mouse key for: {reel_timeout} s")
+    await press_mouse_key(ctx)
+    await sleep(reel_timeout)
+    await release_mouse_key(ctx)
+
+
+async def pause(ctx):
+    pause_timeout = await random_timeout(ctx["config"]["fishing"]["timeouts"]["pause"])
+    debug(f"Pause for: {pause_timeout} s")
+    await sleep(pause_timeout)
+
+
+async def cast(ctx):
+    cast_timeout = await random_timeout(ctx["config"]["fishing"]["timeouts"]["cast"])
+    debug("Pause for: 6 s (skipping animation)")
+    await sleep(6)
     debug("release b")
-    release_key('b')
+    await release_key(ctx, "b")
     debug("Pause for: 1 s")
-    sleep(1)
-    debug("Pause for: {} s".format(cast_timeout))
-    press_mouse_key()
-    sleep(cast_timeout)
-    release_mouse_key()
-    debug("Pause for: 5 s")
-    sleep(5)
+    await sleep(1)
+    debug(f"Cast for: {cast_timeout} s")
+    await press_mouse_key(ctx)
+    await sleep(cast_timeout)
+    await release_mouse_key(ctx)
+    debug("Pause for: 4 s")
+    await sleep(4)
     debug("press b")
-    press_key('b')
+    await press_key(ctx, "b")
 
-def repairing():
-    release_key('b')
-    arm_disarm_timeout = random_timeout(dict['repairing']['timeouts']['arm_disarm'])
-    debug("Disarm fishing rod. Total time: {} s".format(arm_disarm_timeout))
-    arm_disarm_fishing_rod(arm_disarm_timeout)
 
-    inventory_timeout = random_timeout(dict['repairing']['timeouts']['inventory'])
-    debug("Open inventory. Total time: {} s".format(inventory_timeout))
-    open_close_inventory(inventory_timeout)
+async def repairing(ctx):
+    await release_key(ctx, "b")
+    arm_disarm_timeout = await random_timeout(ctx["config"]["repairing"]["timeouts"]["arm_disarm"])
+    debug(f"Disarm fishing rod. Total time: {arm_disarm_timeout} s")
+    await arm_disarm_fishing_rod(ctx, arm_disarm_timeout)
 
-    repair_timeout = random_timeout(dict['repairing']['timeouts']['repair'])
-    debug("Repair fishing rod. Total time: {} s".format(repair_timeout))
-    repair(repair_timeout)
+    inventory_timeout = await random_timeout(ctx["config"]["repairing"]["timeouts"]["inventory"])
+    debug(f"Open inventory. Total time: {inventory_timeout} s")
+    await open_close_inventory(ctx, inventory_timeout)
 
-    confirm_timeout = random_timeout(dict['repairing']['timeouts']['confirm'])
-    debug("Confirm repair. Total time: {} s".format(confirm_timeout))
-    confirm_repair(confirm_timeout)
+    repair_timeout = await random_timeout(ctx["config"]["repairing"]["timeouts"]["repair"])
+    debug(f"Repair fishing rod. Total time: {repair_timeout} s")
+    await repair(ctx, repair_timeout)
 
-    debug("Close inventory. Total time: {} s".format(inventory_timeout))
-    open_close_inventory(inventory_timeout)
+    confirm_timeout = await random_timeout(ctx["config"]["repairing"]["timeouts"]["confirm"])
+    debug(f"Confirm repair. Total time: {confirm_timeout} s")
+    await confirm_repair(ctx, confirm_timeout)
 
-    debug("Arm fishing rod. Total time: {} s".format(arm_disarm_timeout))
-    arm_disarm_fishing_rod(arm_disarm_timeout)
+    debug(f"Close inventory. Total time: {inventory_timeout} s")
+    await open_close_inventory(ctx, inventory_timeout)
 
-    move_around = random_timeout(dict['repairing']['timeouts']['move_around'])
-    debug("Move to prevent AFK kick. Total time:  {} s".format(move_around))
-    move_left_right(move_around)
+    debug(f"Arm fishing rod. Total time: {arm_disarm_timeout} s")
+    await arm_disarm_fishing_rod(ctx, arm_disarm_timeout)
 
-def arm_disarm_fishing_rod(timeout):
-    sleep(timeout)
-    press_key('F3')
-    release_key('F3')
-    sleep(timeout)
+    # move_around = await random_timeout(ctx["config"]["repairing"]["timeouts"]["move_around"])
+    # debug(f"Move to prevent AFK kick. Total time:  {move_around} s")
+    # await move_left_right(move_around)
 
-def open_close_inventory(timeout):
-    sleep(timeout)
-    press_key('tab')
-    release_key('tab')
-    sleep(timeout)
 
-def repair(timeout):
-    sleep(timeout)
-    press_key('r')
-    sleep(0.1)
-    click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
-    sleep(0.1)
-    release_key('r')
-    sleep(timeout)
+async def arm_disarm_fishing_rod(ctx, timeout):
+    await sleep(timeout)
+    await press_key(ctx, "F3")
+    await release_key(ctx, "F3")
+    await sleep(timeout)
 
-def confirm_repair(timeout):
-    sleep(timeout)
-    press_key('e')
-    sleep(0.1)
-    release_key('e')
-    sleep(timeout)
 
-def move_left_right(timeout):
-    press_key('a')
-    sleep(timeout)
-    release_key('a')
-    sleep(1.0)
-    press_key('d')
-    sleep(timeout)
-    release_key('d')
+async def open_close_inventory(ctx, timeout):
+    await sleep(timeout)
+    await press_key(ctx, "tab")
+    await release_key(ctx, "tab")
+    await sleep(timeout)
 
-def select_bait():
-    release_key('b')
+
+async def repair(ctx, timeout):
+    await sleep(timeout)
+    await press_key(ctx, "r")
+    await sleep(0.2)
+    await click_mouse_with_coordinates(ctx, ctx["config"]["repairing"]["x"].get(),
+                                            ctx["config"]["repairing"]["y"].get())
+    await sleep(0.2)
+    await release_key(ctx, "r")
+    await sleep(timeout)
+
+
+async def confirm_repair(ctx, timeout):
+    await sleep(timeout)
+    await press_key(ctx, "e")
+    await sleep(0.2)
+    await release_key(ctx, "e")
+    await sleep(timeout)
+
+
+async def move_left_right(ctx, timeout):
+    await press_key(ctx, "a")
+    await sleep(timeout)
+    await release_key(ctx, "a")
+    await sleep(1.0)
+    await press_key(ctx, "d")
+    await sleep(timeout)
+    await release_key(ctx, "d")
+
+
+async def select_bait(ctx):
+    await release_key(ctx, "b")
 
     debug("Bait selection.")
-    press_key('r')
-    sleep(0.1)
-    release_key('r')
+    await press_key(ctx, "r")
+    await sleep(0.1)
+    await release_key(ctx, "r")
 
-    bait_select_timeout = random_timeout(dict['bait']['timeouts']['select'])
-    debug("Bait select. Total time: {} s".format(bait_select_timeout))
-    press_on_bait(bait_select_timeout)
+    bait_select_timeout = await random_timeout(ctx["config"]["bait"]["timeouts"]["select"])
+    debug(f"Bait select. Total time: {bait_select_timeout} s")
+    await press_on_bait(ctx, bait_select_timeout)
 
-    confirm_timeout = random_timeout(dict['bait']['timeouts']['confirm'])
-    debug("Confirm bait selection. Total time: {} s".format(confirm_timeout))
-    press_equip_bait(confirm_timeout)
+    confirm_timeout = await random_timeout(ctx["config"]["bait"]["timeouts"]["confirm"])
+    debug(f"Confirm bait selection. Total time: {confirm_timeout} s")
+    await press_equip_bait(ctx, confirm_timeout)
 
-def press_on_bait(timeout):
-    sleep(timeout)
-    click_mouse_with_coordinates(dict['bait']['bait_x'].get(), dict['bait']['bait_y'].get())
-    sleep(timeout)
 
-def press_equip_bait(timeout):
-    sleep(timeout)
-    click_mouse_with_coordinates(dict['bait']['equip_button_x'].get(), dict['bait']['equip_button_y'].get())
-    sleep(timeout)
+async def press_on_bait(ctx, timeout):
+    await sleep(timeout)
+    await click_mouse_with_coordinates(ctx, ctx["config"]["bait"]["bait_x"].get(), ctx["config"]["bait"]["bait_y"].get())
+    await sleep(timeout)
+
+
+async def press_equip_bait(ctx, timeout):
+    await sleep(timeout)
+    await click_mouse_with_coordinates(
+        ctx, ctx["config"]["bait"]["equip_button_x"].get(), ctx["config"]["bait"]["equip_button_y"].get()
+    )
+    await sleep(timeout)
     # waiting for animation to finish
-    sleep(1)
+    await sleep(1)
