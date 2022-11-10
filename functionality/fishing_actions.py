@@ -75,9 +75,9 @@ async def repairing(ctx):
     debug(f"Arm fishing rod. Total time: {arm_disarm_timeout} s")
     await arm_disarm_fishing_rod(ctx, arm_disarm_timeout)
 
-    # move_around = await random_timeout(ctx["config"]["repairing"]["timeouts"]["move_around"])
-    # debug(f"Move to prevent AFK kick. Total time:  {move_around} s")
-    # await move_left_right(move_around)
+    move_around = await random_timeout(ctx["config"]["repairing"]["timeouts"]["move_around"])
+    debug(f"Move to prevent AFK kick. Total time:  {move_around} s")
+    await move_left_right(ctx, move_around)
 
 
 async def arm_disarm_fishing_rod(ctx, timeout):
