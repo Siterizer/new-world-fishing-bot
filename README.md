@@ -1,12 +1,5 @@
-# new-world-fishing-bot end of support!
-Hello all of you guys should get some clarification about me and bot's current situation.\
-The account on which I was fishing has been permanently banned today (2021.04.11)\
-I'm not going to risk 'testing' the bot on the main account.\
-\
-**for this reason, I suspend any further work on the bot. I don't want more people to get banned because of me**\
-\
-As a summary, I would like to thank you all with responding to problems and building the bot :)\
-especially @syntax001 @NewWorldDev @ITgamers and @srhinos you did a pretty good job.
+# new-world-fishing-bot
+
 
 [![Demonstration](https://i.imgur.com/SLQC3oT.png)](https://www.youtube.com/watch?v=fxEKNIxCn38)
 click img for demonstration
