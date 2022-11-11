@@ -94,6 +94,11 @@ def get_config():
                 config["colors"]["brown"]["g"],
                 config["colors"]["brown"]["b"],
             ),
+            "brown2": (
+                config["colors"]["brown2"]["r"],
+                config["colors"]["brown2"]["g"],
+                config["colors"]["brown2"]["b"],
+            ),
             "red": (
                 config["colors"]["red"]["r"],
                 config["colors"]["red"]["g"],
@@ -192,6 +197,11 @@ def save_data(config):
                 "r": config["colors"]["brown"][0],
                 "g": config["colors"]["brown"][1],
                 "b": config["colors"]["brown"][2],
+            },
+            "brown2": {
+                "r": config["colors"]["brown2"][0],
+                "g": config["colors"]["brown2"][1],
+                "b": config["colors"]["brown2"][2],
             },
             "red": {
                 "r": config["colors"]["red"][0],

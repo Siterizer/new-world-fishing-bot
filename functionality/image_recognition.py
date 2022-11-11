@@ -14,6 +14,7 @@ NOTICE, NOTHING = get_image_recognition_images()
 async def image_recognition_result(ctx, x, y, width, height):
     REEL_COLOR = ctx["config"]["colors"]["green"]
     WAIT_COLOR_BROWN = ctx["config"]["colors"]["brown"]
+    WAIT_COLOR_BROWN_2 = ctx["config"]["colors"]["brown2"]
     WAIT_COLOR_RED = ctx["config"]["colors"]["red"]
 
     region = (x, y, x + width, y + height)
@@ -45,6 +46,8 @@ async def image_recognition_result(ctx, x, y, width, height):
     if await pixel_match(img, REEL_COLOR):
         return "2"
     if await pixel_match(img, WAIT_COLOR_BROWN):
+        return "3"
+    if await pixel_match(img, WAIT_COLOR_BROWN_2):
         return "3"
     if await pixel_match(img, WAIT_COLOR_RED):
         return "4"

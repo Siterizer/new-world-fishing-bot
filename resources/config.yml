@@ -61,13 +61,17 @@ colors:
     g: 227
     b: 162
   brown:
-    r: 230
-    g: 110
-    b: 22
+    r: 198
+    g: 94
+    b: 19
+  brown2:
+    r: 192
+    g: 45
+    b: 9
   red:
-    r: 109
-    g: 18
-    b: 21
+    r: 176
+    g: 33
+    b: 34
 resolution:
   x: 5120
   y: 2160
