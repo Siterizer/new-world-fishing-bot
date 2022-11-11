@@ -12,7 +12,7 @@ def add_repairing_column(app, config):
     repairing_column_header = Label(app, text="Repairing")
     repairing_column_header.grid(row=0, column=1, pady=(3, 0))
     repairing_column = LabelFrame(app)
-    repairing_column.grid(row=1, column=1, padx=(10, 0), pady=(0, 118))
+    repairing_column.grid(row=1, column=1, padx=(10, 0), pady=(0, 50))
     repairing_column_position_header = Label(
         repairing_column, text="Click position (px)"
     )
