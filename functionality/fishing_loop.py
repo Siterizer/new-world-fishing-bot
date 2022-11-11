@@ -3,7 +3,7 @@ from utils.LastResults import LastResults
 from wrappers.logging_wrapper import debug, info
 
 import asyncio
-from functionality.fishing_actions import cast, fish_notice, pause, reel_fish, repairing, select_bait
+from functionality.fishing_actions import cast, fish_notice, pause, reel_fish, repairing, select_bait, move_around
 from functionality.image_recognition import image_recognition_result
 
 
@@ -20,17 +20,19 @@ async def fishing_loop(config):
     while True:
         debug("starting new loop")
         last_results.add(await call_appropriate_fishing_action(ctx, last_results))
-        if last_results.is_full_of("0"):
-            if ctx["config"]["repairing"]["enable"].get() == 1:
-                should_repair_in = -1 * (int(time()) - last_repair_time - ctx["config"]["repairing"]["every"].get())
-                debug("Repair in: " + str(should_repair_in))
-                if should_repair_in < 0:
-                    last_repair_time = int(time())
+        if last_results.is_full_of("0") and ctx["config"]["repairing"]["enable_repairs"].get() == 1:
+            should_repair_in = -1 * (int(time()) - last_repair_time - ctx["config"]["repairing"]["every"].get())
+            debug("Repair in: " + str(should_repair_in))
+            if should_repair_in < 0:
+                last_repair_time = int(time())
+                info("Repairing")
+                await repairing(ctx)
+                if ctx["config"]["repairing"]["enable_move_around"].get() == 1:
                     info("Repairing")
-                    await repairing(ctx)
-                    if ctx["config"]["bait"]["enable"].get() == 1:
-                        info("Selecting bait")
-                        await select_bait(ctx)
+                    await move_around(ctx)
+                if ctx["config"]["bait"]["enable"].get() == 1:
+                    info("Selecting bait")
+                    await select_bait(ctx)
 
 
 async def call_appropriate_fishing_action(ctx, last_results):

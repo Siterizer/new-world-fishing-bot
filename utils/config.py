@@ -228,3 +228,15 @@ async def random_timeout(key):
     sample = random.normal(loc, scale)
 
     return round(min(max(sample, lower_limit), upper_limit), 2)
+
+
+async def random_timeout_temp_for_double(key):
+    upper_limit = key["max"].get()
+    lower_limit = key["min"].get()
+
+    loc = (upper_limit + lower_limit) / 2
+    scale = (upper_limit - lower_limit) / 4
+
+    sample = random.normal(loc, scale)
+
+    return round(min(max(sample, lower_limit), upper_limit), 2)
