@@ -24,7 +24,8 @@ repairing:
   y: 699
   length: 25
   every: 400
-  enable: 1
+  enable_repairs: 1
+  enable_move_around: 1
   timeouts:
     arm_disarm:
       min: 1

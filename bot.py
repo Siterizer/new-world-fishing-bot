@@ -69,14 +69,24 @@ class FishingBoi(tk.Tk):
         self.destroy()
 
     def change_repair_button_state(self, button):
-        if self.config["repairing"]["enable"].get() == 1:
+        if self.config["repairing"]["enable_repairs"].get() == 1:
             button.configure(text="OFF")
             button.configure(bg="red")
-            self.config["repairing"]["enable"] = tk.IntVar(value=0)
+            self.config["repairing"]["enable_repairs"] = tk.IntVar(value=0)
         else:
             button.configure(text="ON ")
             button.configure(bg="green")
-            self.config["repairing"]["enable"] = tk.IntVar(value=1)
+            self.config["repairing"]["enable_repairs"] = tk.IntVar(value=1)
+
+    def change_move_around_button_state(self, button):
+        if self.config["repairing"]["enable_move_around"].get() == 1:
+            button.configure(text="OFF")
+            button.configure(bg="red")
+            self.config["repairing"]["enable_move_around"] = tk.IntVar(value=0)
+        else:
+            button.configure(text="ON ")
+            button.configure(bg="green")
+            self.config["repairing"]["enable_move_around"] = tk.IntVar(value=1)
 
     def change_bait_button_state(self, button):
         if self.config["bait"]["enable"].get() == 1:

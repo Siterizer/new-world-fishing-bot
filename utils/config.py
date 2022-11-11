@@ -1,5 +1,5 @@
 from yaml import safe_load, dump
-from tkinter import IntVar
+from tkinter import IntVar, DoubleVar
 from utils.global_variables import CONFIG_PATH
 from numpy import random
 
@@ -41,7 +41,8 @@ def get_config():
             "y": IntVar(value=config["repairing"]["y"]),
             "length": IntVar(value=config["repairing"]["length"]),
             "every": IntVar(value=config["repairing"]["every"]),
-            "enable": IntVar(value=config["repairing"]["enable"]),
+            "enable_repairs": IntVar(value=config["repairing"]["enable_repairs"]),
+            "enable_move_around": IntVar(value=config["repairing"]["enable_move_around"]),
             "timeouts": {
                 "arm_disarm": {
                     "min": config["repairing"]["timeouts"]["arm_disarm"]["min"],
@@ -60,8 +61,8 @@ def get_config():
                     "max": config["repairing"]["timeouts"]["confirm"]["max"],
                 },
                 "move_around": {
-                    "min": config["repairing"]["timeouts"]["move_around"]["min"],
-                    "max": config["repairing"]["timeouts"]["move_around"]["max"],
+                    "min": DoubleVar(value=config["repairing"]["timeouts"]["move_around"]["min"]),
+                    "max": DoubleVar(value=config["repairing"]["timeouts"]["move_around"]["max"]),
                 },
             },
         },
@@ -145,7 +146,8 @@ def save_data(config):
             "y": config["repairing"]["y"].get(),
             "length": config["repairing"]["length"].get(),
             "every": config["repairing"]["every"].get(),
-            "enable": config["repairing"]["enable"].get(),
+            "enable_repairs": config["repairing"]["enable_repairs"].get(),
+            "enable_move_around": config["repairing"]["enable_move_around"].get(),
             "timeouts": {
                 "arm_disarm": {
                     "min": config["repairing"]["timeouts"]["arm_disarm"]["min"],
@@ -164,8 +166,8 @@ def save_data(config):
                     "max": config["repairing"]["timeouts"]["confirm"]["max"],
                 },
                 "move_around": {
-                    "min": config["repairing"]["timeouts"]["move_around"]["min"],
-                    "max": config["repairing"]["timeouts"]["move_around"]["max"],
+                    "min": config["repairing"]["timeouts"]["move_around"]["min"].get(),
+                    "max": config["repairing"]["timeouts"]["move_around"]["max"].get(),
                 },
             },
         },
